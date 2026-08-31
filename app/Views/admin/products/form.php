@@ -44,7 +44,7 @@ $tabs = [
   <?php endforeach; ?>
 </div>
 
-<form method="post" action="<?= $isEdit ? '/admin/products/' . $pid : '/admin/products' ?>" class="space-y-6">
+<form id="product-form" method="post" action="<?= $isEdit ? '/admin/products/' . $pid : '/admin/products' ?>" class="space-y-6">
   <?= csrf_field() ?><?php if ($isEdit): ?><?= method_field('PUT') ?><?php endif; ?>
 
   <!-- TAB: Basic -->
@@ -141,7 +141,6 @@ $tabs = [
     </div>
   </section>
 
-  <div class="flex gap-3"><button class="btn btn-primary"><?= $isEdit ? 'Save product' : 'Save draft' ?></button><a href="/admin/products" class="btn btn-ghost">Cancel</a></div>
 </form>
 
 <!-- TAB: Images (separate forms — outside the main product form) -->
@@ -202,6 +201,13 @@ $tabs = [
     </div>
   <?php endif; ?>
 </section>
+
+<!-- Main-form actions: placed after all panels so they sit at the BOTTOM on every
+     tab (hidden panels collapse). The button submits the main form via form=. -->
+<div class="mt-6 flex gap-3">
+  <button form="product-form" class="btn btn-primary"><?= $isEdit ? 'Save product' : 'Save draft' ?></button>
+  <a href="/admin/products" class="btn btn-ghost">Cancel</a>
+</div>
 
 <?php if ($isEdit && ($canDelete ?? true)): ?>
 <form method="post" action="/admin/products/<?= $pid ?>/delete" class="js-confirm mt-6" data-confirm="Archive this product?">

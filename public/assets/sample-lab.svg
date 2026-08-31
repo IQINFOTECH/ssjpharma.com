@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sample laboratory illustration">
+  <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0e6a63"/><stop offset="0.55" stop-color="#1b6aa8"/><stop offset="1" stop-color="#22357a"/>
+  </linearGradient></defs>
+  <rect width="480" height="480" fill="url(#lg)"/>
+  <g stroke="rgba(255,255,255,.14)"><path d="M0 80H480M0 160H480M0 240H480M0 320H480M0 400H480M80 0V480M160 0V480M240 0V480M320 0V480M400 0V480"/></g>
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.92">
+    <!-- flask -->
+    <path d="M150 150v70l-46 96a16 16 0 0 0 15 23h92a16 16 0 0 0 15-23l-46-96v-70"/>
+    <path d="M140 150h40"/>
+    <path d="M120 300h108" stroke-width="2.5"/>
+    <!-- beaker -->
+    <path d="M280 210v96a14 14 0 0 0 14 14h44a14 14 0 0 0 14-14v-96"/>
+    <path d="M274 210h64M292 250h48" stroke-width="2.5"/>
+    <!-- molecule -->
+    <circle cx="330" cy="120" r="12"/><circle cx="384" cy="150" r="12"/><circle cx="330" cy="180" r="12"/>
+    <path d="M330 132v36M341 126l32 18M373 156l-32 18"/>
+  </g>
+  <g fill="#8ff0e4" opacity="0.9"><circle cx="316" cy="270" r="6"/><circle cx="196" cy="286" r="6"/><circle cx="176" cy="250" r="5"/></g>
+</svg>

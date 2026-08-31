@@ -41,7 +41,9 @@ final class ContactController extends SiteController
             if ($product !== null) {
                 $productId = (int) $product['id'];
                 $formKey = 'product-enquiry';      // canonical product form key
-                $backUrl = '/products/' . $product['slug'];
+                // The product-bound form lives on the Contact page (kept off the
+                // long product page), so validation errors return there.
+                $backUrl = '/contact-us?product=' . $productId;
             }
         }
         // Marker used by the page/catalog renderers to re-show flashed errors.

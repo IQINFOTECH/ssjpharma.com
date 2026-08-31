@@ -84,7 +84,7 @@ $info = array_filter([
       <?php endif; ?>
 
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#enquire" class="btn btn-primary">Enquire about this product</a>
+        <a href="/contact-us?product=<?= (int) $product['id'] ?>" class="btn btn-primary">Enquire about this product</a>
         <?php if ($waLink !== ''): ?><a href="<?= e($waLink) ?>" target="_blank" rel="noopener" class="btn btn-whatsapp" data-wa-context="product">WhatsApp Enquiry</a><?php endif; ?>
       </div>
       <p class="mt-4 text-xs text-slate-400">For business, distribution &amp; bulk enquiries — send your requirement and our team will respond.</p>
@@ -142,14 +142,4 @@ $info = array_filter([
 </section>
 <?php endif; ?>
 
-<!-- Enquiry -->
-<section id="enquire" class="border-t border-slate-100 bg-slate-50/60 py-14">
-  <div class="container-x">
-    <div class="mb-6 max-w-2xl">
-      <h2 class="text-2xl font-semibold">Enquire about this product</h2>
-      <p class="mt-2 text-slate-600">Send us your details and we will get back to you about <strong><?= e($product['name']) ?></strong>.</p>
-    </div>
-    <?php $form = $enquiryForm; include $sectionsDir . '/contact_form.php'; ?>
-  </div>
-</section>
 <?php $this->stop(); ?>

@@ -87,6 +87,15 @@ final class SectionRegistry
                     ]],
                 ],
             ],
+            'trust' => [
+                'label'  => 'Trust Strip',
+                'fields' => [
+                    'heading' => ['type' => 'text',     'label' => 'Heading (optional)'],
+                    'items'   => ['type' => 'repeater', 'label' => 'Items (verified only)', 'subfields' => [
+                        'value' => 'Value / short label', 'label' => 'Caption (optional)',
+                    ]],
+                ],
+            ],
             'product_showcase' => [
                 'label'  => 'Product Showcase (placeholder)',
                 'fields' => [

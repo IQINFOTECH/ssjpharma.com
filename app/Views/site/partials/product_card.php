@@ -21,7 +21,7 @@ $url = '/products/' . $p['slug'];
     <?php if (!empty($p['short_description'])): ?><p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600"><?= e($p['short_description']) ?></p><?php endif; ?>
     <div class="mt-auto flex items-center gap-2 pt-4">
       <a href="<?= e($url) ?>" class="btn btn-ghost px-3.5 py-1.5 text-xs">View</a>
-      <a href="<?= e($url) ?>#enquire" class="btn btn-primary px-3.5 py-1.5 text-xs">Enquire</a>
+      <a href="/contact-us?product=<?= (int) $p['id'] ?>" class="btn btn-primary px-3.5 py-1.5 text-xs">Enquire</a>
     </div>
   </div>
 </article>

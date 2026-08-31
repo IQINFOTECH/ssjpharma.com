@@ -155,17 +155,8 @@ final class CatalogController extends SiteController
         $waMessage = "Hello SSJ Pharmaceuticals,\n\nI am interested in:\n\nProduct:\n{$product['name']}\n\nPlease share more information.\n\nThank you.";
         $waLink = $this->whatsapp()->link($waMessage);
 
-        // Enquiry form context (product-bound). Flashed errors on validation failure.
-        /** @var Session $session */
-        $session = $this->container->get(Session::class);
-        $errors = []; $old = [];
-        if ($session->get('contact_form_key') === 'product-' . $id) {
-            $errors = (array) $session->getFlash('contact_errors', []);
-            $old = (array) $session->getFlash('contact_old', []);
-            $session->forget('contact_form_key');
-        }
-        $captcha = $this->container->get(\App\Services\CaptchaService::class);
-
+        // The enquiry form lives on the Contact page (/contact-us?product={id}) to keep
+        // the product page short; the CTAs link there with the product context.
         return $this->renderSite('site.catalog.product', $seo, [
             'product'    => $product,
             'isPreview'  => $isPreview,
@@ -177,14 +168,6 @@ final class CatalogController extends SiteController
             'dosage'     => $dosage,
             'related'    => $related,
             'waLink'     => $waLink,
-            'enquiryForm'=> [
-                'form_key'         => 'product-enquiry', // source derived server-side (EnquiryType)
-                'product'          => ['id' => $id, 'name' => $product['name']],
-                'errors'           => $errors,
-                'old'              => $old,
-                'captcha_enabled'  => $captcha->isEnabled(),
-                'captcha_site_key' => $captcha->siteKey(),
-            ],
         ], $breadcrumbs, 200, [$productSchema]);
     }
 

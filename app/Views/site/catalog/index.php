@@ -79,8 +79,15 @@ if ($dfId)      { $chips[] = ['label' => $nm($dosages, $dfId),      'url' => $wi
           <?php endforeach; ?>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div class="grid gap-6 sm:grid-cols-2">
           <?php foreach ($products as $p): include $partials . '/product_card.php'; endforeach; ?>
+          <!-- Catalogue-level enquiry CTA — fills sparse rows and gives a direct enquiry path. -->
+          <a href="/contact-us" class="flex flex-col items-center justify-center rounded-2xl border border-dashed border-brand-200 bg-brand-50/40 p-8 text-center transition hover:border-brand-300 hover:bg-brand-50">
+            <svg class="h-8 w-8 text-brand-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3 class="mt-3 font-display text-lg font-semibold text-brand-900">Can't find what you need?</h3>
+            <p class="mt-1 max-w-xs text-sm text-slate-600">Tell us your requirement and our team will get back to you.</p>
+            <span class="btn btn-primary mt-4 py-2 text-sm">Send an enquiry</span>
+          </a>
         </div>
 
         <?php if ($totalPages > 1): ?>

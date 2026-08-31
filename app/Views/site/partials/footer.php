@@ -7,7 +7,7 @@
  * @var int $currentYear
  */
 $company = $settings->companyName();
-$address = $settings->get('company_address');
+$address = $settings->fullAddress();
 $email   = $settings->get('company_email');
 $phone   = $settings->get('company_phone');
 $waLink  = $whatsappLink ?? '';

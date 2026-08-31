@@ -58,6 +58,18 @@ final class SettingsService
     // --- Convenience accessors used across templates -------------------------
 
     public function companyName(): string { return $this->get('company_name', 'SSJ Pharmaceuticals'); }
+
+    /** Full postal address composed from the granular company_* fields (multi-line). */
+    public function fullAddress(): string
+    {
+        $cityLine = $this->get('company_city');
+        $state = $this->get('company_state');
+        $postal = $this->get('company_postal');
+        if ($state !== '')  { $cityLine = ($cityLine !== '' ? $cityLine . ', ' : '') . $state; }
+        if ($postal !== '') { $cityLine = ($cityLine !== '' ? $cityLine . ' ' : '') . $postal; }
+        $parts = array_filter([$this->get('company_address'), $cityLine, $this->get('company_country')]);
+        return implode("\n", $parts);
+    }
     public function websiteName(): string { return $this->get('website_name', $this->companyName()); }
     public function websiteUrl(): string  { return rtrim($this->get('website_url', (string) config('app.url')), '/'); }
 

@@ -132,16 +132,34 @@ if (!function_exists('can')) {
 }
 
 if (!function_exists('media_url')) {
-    /** Resolve an active media id to its public URL, or '' if missing. */
+    /**
+     * Resolve a section image reference to its public URL, or '' if missing.
+     * Accepts an active Media id (numeric) OR a pasted same-origin path
+     * (/assets/…, /uploads/…) or absolute http(s) URL, which is returned as-is.
+     */
     function media_url(int|string|null $id): string
     {
-        $id = (int) $id;
-        if ($id <= 0) {
+        if ($id === null) {
+            return '';
+        }
+        $val = is_string($id) ? trim($id) : (string) $id;
+        if ($val === '') {
+            return '';
+        }
+        // Pasted absolute path or URL — use verbatim (CSP still governs loading).
+        if ($val[0] === '/' || str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) {
+            return $val;
+        }
+        if (!ctype_digit($val)) {
+            return '';
+        }
+        $mediaId = (int) $val;
+        if ($mediaId <= 0) {
             return '';
         }
         /** @var \App\Repositories\MediaRepository $repo */
         $repo = Container::getInstance()->get(\App\Repositories\MediaRepository::class);
-        $row = $repo->findActive($id);
+        $row = $repo->findActive($mediaId);
         return $row['url_path'] ?? '';
     }
 }

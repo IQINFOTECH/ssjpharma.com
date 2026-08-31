@@ -29,7 +29,7 @@ FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s
 
 -- About / Quality: hero + richtext
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"About Us","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","align":"left"}'
+SELECT id, 'hero', 10, '{"heading":"About Us","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","image_id":"/assets/sample-lab.svg","align":"left"}'
 FROM `pages` WHERE `slug`='about-us' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
@@ -37,7 +37,7 @@ SELECT id, 'richtext', 20, '{"heading":"","body":"<p>Placeholder content. Edit t
 FROM `pages` WHERE `slug`='about-us' AND (SELECT COUNT(*) FROM `page_sections` s WHERE s.page_id = pages.id) < 2;
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"Quality","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","align":"left"}'
+SELECT id, 'hero', 10, '{"heading":"Quality","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","image_id":"/assets/sample-quality.svg","align":"left"}'
 FROM `pages` WHERE `slug`='quality' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
@@ -50,7 +50,7 @@ SELECT id, 'hero', 10, '{"heading":"Contact Us","subheading":"Send us an enquiry
 FROM `pages` WHERE `slug`='contact-us' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"Become a Distributor","subheading":"Tell us about your business and we will be in touch.","primary_label":"","primary_url":"","align":"center","size":"small"}'
+SELECT id, 'hero', 10, '{"heading":"Become a Distributor","subheading":"Tell us about your business and we will be in touch.","primary_label":"","primary_url":"","image_id":"/assets/sample-warehouse.svg","align":"left"}'
 FROM `pages` WHERE `slug`='become-a-distributor' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 -- Thank you

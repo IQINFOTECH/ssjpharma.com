@@ -53,6 +53,19 @@ final class ProductRepository extends Repository
         );
     }
 
+    /**
+     * Any non-deleted product by slug, regardless of status or demo flag — for
+     * AUTHENTICATED ADMIN PREVIEW ONLY. Never call this on a public code path
+     * without gating on a signed-in user + products.view permission.
+     */
+    public function findAnyBySlug(string $slug): ?array
+    {
+        return $this->db->selectOne(
+            "SELECT * FROM `products` WHERE `slug` = :s AND `deleted_at` IS NULL LIMIT 1",
+            ['s' => $slug]
+        );
+    }
+
     public function findBySlug(string $slug, ?int $exceptId = null): ?array
     {
         $sql = "SELECT * FROM `products` WHERE `slug` = :s AND `deleted_at` IS NULL";

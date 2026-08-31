@@ -88,8 +88,21 @@ final class CatalogController extends SiteController
     {
         $slug = (string) $request->route('slug');
         $product = $this->products()->findPublishedBySlug($slug);
+
+        // Admin preview: a signed-in user with products.view may preview an
+        // unpublished (draft / in-review / archived) or demo product. The public
+        // still gets a 404, and the preview is rendered noindex (see $seoPage).
+        $isPreview = false;
         if ($product === null) {
-            return $this->redirectOr404($request);
+            $auth = $this->container->get(\App\Auth\Auth::class);
+            $rbac = $this->container->get(\App\Auth\Rbac::class);
+            if ($auth->check() && $rbac->can('products.view')) {
+                $product = $this->products()->findAnyBySlug($slug);
+                $isPreview = $product !== null;
+            }
+            if ($product === null) {
+                return $this->redirectOr404($request);
+            }
         }
         $id = (int) $product['id'];
 
@@ -108,7 +121,7 @@ final class CatalogController extends SiteController
             'meta_description' => $product['meta_description'] ?: $product['short_description'],
             'canonical_url'    => $product['canonical_url'] ?? null,
             'og_image_id'      => $product['og_image_id'] ?: $product['hero_image_id'],
-            'robots'           => $product['robots'] ?? null,
+            'robots'           => $isPreview ? 'noindex,nofollow' : ($product['robots'] ?? null),
         ];
         $path = '/products/' . $product['slug'];
         $seo = $this->seo()->forPage($seoPage, $path);
@@ -155,6 +168,7 @@ final class CatalogController extends SiteController
 
         return $this->renderSite('site.catalog.product', $seo, [
             'product'    => $product,
+            'isPreview'  => $isPreview,
             'images'     => $images,
             'documents'  => $documents,
             'specs'      => $specs,

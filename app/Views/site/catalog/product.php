@@ -17,6 +17,13 @@ $info = array_filter([
 ], static fn ($v) => trim((string) $v) !== '');
 ?>
 <?php $this->start('content'); ?>
+<?php if ($isPreview ?? false): ?>
+<div class="border-b border-amber-200 bg-amber-50">
+  <div class="container-x flex flex-wrap items-center gap-x-2 py-2.5 text-sm text-amber-800">
+    <strong>Draft preview.</strong> This product is <em><?= e(ucfirst((string) ($product['status'] ?? 'unpublished'))) ?></em> — visible only to signed-in staff, hidden from the public and search engines. Publish it to make it live.
+  </div>
+</div>
+<?php endif; ?>
 
 <!-- Breadcrumbs -->
 <nav class="container-x pt-6 text-sm text-slate-500" aria-label="Breadcrumb">

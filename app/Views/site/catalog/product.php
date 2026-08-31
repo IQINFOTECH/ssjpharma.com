@@ -59,46 +59,38 @@ $info = array_filter([
     </div>
 
     <div>
-      <?php if (!empty($product['is_demo'])): ?><span class="eyebrow mb-2 text-amber-600">Demo — replace before production</span><?php endif; ?>
-      <h1 class="text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl"><?= e($product['name']) ?></h1>
-      <?php if (!empty($product['generic_name'])): ?><p class="mt-2 text-lg text-slate-600"><?= e($product['generic_name']) ?></p><?php endif; ?>
-      <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
-        <?php if (!empty($product['code'])): ?><span class="rounded-full bg-slate-100 px-3 py-1 text-slate-600">Code: <?= e($product['code']) ?></span><?php endif; ?>
-        <?php if (!empty($dosage['name'])): ?><span class="rounded-full bg-brand-50 px-3 py-1 font-medium text-brand-700"><?= e($dosage['name']) ?></span><?php endif; ?>
+      <!-- Category + therapeutic-area chips -->
+      <div class="mb-4 flex flex-wrap items-center gap-2">
+        <?php if ($category !== null): ?><a href="/product-category/<?= e($category['slug']) ?>" class="inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 hover:bg-brand-100"><?= e($category['name']) ?></a><?php endif; ?>
+        <?php foreach ($tas as $t): ?><a href="/therapeutic-area/<?= e($t['slug']) ?>" class="inline-flex rounded-full bg-teal-500/10 px-3 py-1 text-xs font-semibold text-teal-600 hover:bg-teal-500/20"><?= e($t['name']) ?></a><?php endforeach; ?>
+        <?php if (!empty($product['is_demo'])): ?><span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">Demo</span><?php endif; ?>
       </div>
+
+      <h1 class="text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]"><?= e($product['name']) ?></h1>
+      <?php if (!empty($product['generic_name'])): ?><p class="mt-2 text-lg text-slate-600"><?= e($product['generic_name']) ?></p><?php endif; ?>
+      <?php if (!empty($product['code'])): ?><p class="mt-2 font-mono text-xs uppercase tracking-wider text-slate-400">Code · <?= e($product['code']) ?></p><?php endif; ?>
       <?php if (!empty($product['short_description'])): ?><p class="mt-5 leading-relaxed text-slate-600"><?= e($product['short_description']) ?></p><?php endif; ?>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="#enquire" class="btn btn-primary">Enquire Now</a>
+      <!-- Key facts (only fields the CMS actually holds) -->
+      <?php if ($info !== []): ?>
+      <dl class="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
+        <?php foreach ($info as $label => $value): ?>
+        <div class="flex justify-between gap-4 border-b border-slate-50 px-4 py-3 last:border-0">
+          <dt class="shrink-0 text-sm text-slate-500"><?= e($label) ?></dt>
+          <dd class="text-right text-sm font-semibold text-brand-900"><?= nl2br(e($value)) ?></dd>
+        </div>
+        <?php endforeach; ?>
+      </dl>
+      <?php endif; ?>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#enquire" class="btn btn-primary">Enquire about this product</a>
         <?php if ($waLink !== ''): ?><a href="<?= e($waLink) ?>" target="_blank" rel="noopener" class="btn btn-whatsapp" data-wa-context="product">WhatsApp Enquiry</a><?php endif; ?>
       </div>
-
-      <?php if (!empty($tas)): ?>
-      <div class="mt-6 text-sm text-slate-500">
-        Therapeutic areas:
-        <?php foreach ($tas as $j => $t): ?><a href="/therapeutic-area/<?= e($t['slug']) ?>" class="text-brand-600 hover:underline"><?= e($t['name']) ?></a><?= $j < count($tas) - 1 ? ', ' : '' ?><?php endforeach; ?>
-      </div>
-      <?php endif; ?>
+      <p class="mt-4 text-xs text-slate-400">For business, distribution &amp; bulk enquiries — send your requirement and our team will respond.</p>
     </div>
   </div>
 </section>
-
-<!-- Product Information -->
-<?php if ($info !== []): ?>
-<section class="container-x py-6">
-  <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-card">
-    <h2 class="mb-4 text-xl font-semibold">Product Information</h2>
-    <dl class="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-      <?php foreach ($info as $label => $value): ?>
-        <div class="flex gap-3 border-b border-slate-50 pb-3">
-          <dt class="w-32 shrink-0 text-sm font-medium text-slate-400"><?= e($label) ?></dt>
-          <dd class="text-sm text-slate-700"><?= nl2br(e($value)) ?></dd>
-        </div>
-      <?php endforeach; ?>
-    </dl>
-  </div>
-</section>
-<?php endif; ?>
 
 <!-- Description -->
 <?php if (!empty($product['description'])): ?>

@@ -168,6 +168,12 @@ $container->bind(App\Services\EmailQueueService::class, fn (Container $c) => new
     $c->get(App\Services\SettingsService::class),
     $c->get(Logger::class),
 ));
+$container->bind(App\Services\EmailQueueWorker::class, fn (Container $c) => new App\Services\EmailQueueWorker(
+    $c->get(App\Repositories\EmailQueueRepository::class),
+    $c->get(App\Services\MailService::class),
+    $c->get(App\Repositories\LeadActivityRepository::class),
+    $c->get(Logger::class),
+));
 $container->bind(App\Services\CaptchaService::class, fn (Container $c) => new App\Services\CaptchaService($c->get(App\Services\SettingsService::class), $c->get(Logger::class)));
 $container->bind(App\Services\LeadService::class, fn (Container $c) => new App\Services\LeadService(
     $c->get(App\Repositories\LeadRepository::class),

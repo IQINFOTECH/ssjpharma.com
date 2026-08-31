@@ -9,8 +9,13 @@ $errors = (array) ($form['errors'] ?? []);
 $old = (array) ($form['old'] ?? []);
 $val = static fn (string $k): string => e((string) ($old[$k] ?? ''));
 $hasErr = static fn (string $k): string => isset($errors[$k]) ? ' field-error' : '';
-$errText = static function (string $k) use ($errors): string {
-    return isset($errors[$k]) ? '<p class="error-text">' . e($errors[$k]) . '</p>' : '';
+$errId = static fn (string $k): string => 'cf-' . str_replace('_', '-', $k) . '-err';
+// Screen-reader wiring: flag the invalid field and point it at its error text.
+$aria = static function (string $k) use ($errors, $errId): string {
+    return isset($errors[$k]) ? ' aria-invalid="true" aria-describedby="' . $errId($k) . '"' : '';
+};
+$errText = static function (string $k) use ($errors, $errId): string {
+    return isset($errors[$k]) ? '<p class="error-text" id="' . $errId($k) . '">' . e($errors[$k]) . '</p>' : '';
 };
 ?>
 <section class="pb-20">
@@ -43,27 +48,27 @@ $errText = static function (string $k) use ($errors): string {
       <div class="grid gap-5 sm:grid-cols-2">
         <div>
           <label class="field-label" for="cf-name">Name <span class="text-red-500">*</span></label>
-          <input id="cf-name" name="name" class="field<?= $hasErr('name') ?>" value="<?= $val('name') ?>" required maxlength="150" autocomplete="name">
+          <input id="cf-name" name="name" class="field<?= $hasErr('name') ?>"<?= $aria('name') ?> value="<?= $val('name') ?>" required maxlength="150" autocomplete="name">
           <?= $errText('name') ?>
         </div>
         <div>
           <label class="field-label" for="cf-company">Company</label>
-          <input id="cf-company" name="company" class="field<?= $hasErr('company') ?>" value="<?= $val('company') ?>" maxlength="180" autocomplete="organization">
+          <input id="cf-company" name="company" class="field<?= $hasErr('company') ?>"<?= $aria('company') ?> value="<?= $val('company') ?>" maxlength="180" autocomplete="organization">
           <?= $errText('company') ?>
         </div>
         <div>
           <label class="field-label" for="cf-email">Email <span class="text-red-500">*</span></label>
-          <input id="cf-email" type="email" name="email" class="field<?= $hasErr('email') ?>" value="<?= $val('email') ?>" required maxlength="190" autocomplete="email">
+          <input id="cf-email" type="email" name="email" class="field<?= $hasErr('email') ?>"<?= $aria('email') ?> value="<?= $val('email') ?>" required maxlength="190" autocomplete="email">
           <?= $errText('email') ?>
         </div>
         <div>
           <label class="field-label" for="cf-phone">Phone <span class="text-red-500">*</span></label>
-          <input id="cf-phone" name="phone" class="field<?= $hasErr('phone') ?>" value="<?= $val('phone') ?>" required maxlength="40" autocomplete="tel">
+          <input id="cf-phone" name="phone" class="field<?= $hasErr('phone') ?>"<?= $aria('phone') ?> value="<?= $val('phone') ?>" required maxlength="40" autocomplete="tel">
           <?= $errText('phone') ?>
         </div>
         <div>
           <label class="field-label" for="cf-whatsapp">WhatsApp</label>
-          <input id="cf-whatsapp" name="whatsapp" class="field<?= $hasErr('whatsapp') ?>" value="<?= $val('whatsapp') ?>" maxlength="40">
+          <input id="cf-whatsapp" name="whatsapp" class="field<?= $hasErr('whatsapp') ?>"<?= $aria('whatsapp') ?> value="<?= $val('whatsapp') ?>" maxlength="40">
           <?= $errText('whatsapp') ?>
         </div>
         <div>
@@ -85,14 +90,14 @@ $errText = static function (string $k) use ($errors): string {
         <?php if (!empty($form['product'])): ?>
         <div class="sm:col-span-2">
           <label class="field-label" for="cf-req">Quantity / Requirement</label>
-          <input id="cf-req" name="requirement" class="field<?= $hasErr('requirement') ?>" value="<?= $val('requirement') ?>" maxlength="255" placeholder="e.g. quantity, pack size, target market">
+          <input id="cf-req" name="requirement" class="field<?= $hasErr('requirement') ?>"<?= $aria('requirement') ?> value="<?= $val('requirement') ?>" maxlength="255" placeholder="e.g. quantity, pack size, target market">
         </div>
         <?php endif; ?>
       </div>
 
       <div>
         <label class="field-label" for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" rows="5" class="field<?= $hasErr('message') ?>" maxlength="5000"><?= $val('message') ?></textarea>
+        <textarea id="cf-message" name="message" rows="5" class="field<?= $hasErr('message') ?>"<?= $aria('message') ?> maxlength="5000"><?= $val('message') ?></textarea>
         <?= $errText('message') ?>
       </div>
 
@@ -109,7 +114,7 @@ $errText = static function (string $k) use ($errors): string {
       </div>
 
       <label class="flex items-start gap-3 text-sm text-slate-600">
-        <input type="checkbox" name="consent" value="1" class="mt-0.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500" <?= !empty($old['consent']) ? 'checked' : '' ?> required>
+        <input type="checkbox" name="consent" value="1" class="mt-0.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"<?= $aria('consent') ?> <?= !empty($old['consent']) ? 'checked' : '' ?> required>
         <span>I consent to being contacted regarding my enquiry. <span class="text-red-500">*</span></span>
       </label>
       <?= $errText('consent') ?>

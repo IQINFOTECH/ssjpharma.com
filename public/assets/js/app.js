@@ -51,6 +51,22 @@
     if (e.key === 'Escape') closeDrawer();
   });
 
+  // --- Desktop nav dropdowns: keep aria-expanded honest + Escape to close ----
+  // The panel reveals on hover (CSS) and on keyboard focus (CSS focus-within);
+  // this only syncs the trigger's aria-expanded state and adds Escape.
+  document.querySelectorAll('.js-dropdown').forEach(function (group) {
+    var trigger = group.querySelector('.js-dropdown-trigger');
+    if (!trigger) return;
+    function set(open) { trigger.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    group.addEventListener('mouseenter', function () { set(true); });
+    group.addEventListener('mouseleave', function () { set(false); });
+    group.addEventListener('focusin', function () { set(true); });
+    group.addEventListener('focusout', function (e) { if (!group.contains(e.relatedTarget)) set(false); });
+    group.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { set(false); if (trigger.blur) trigger.blur(); }
+    });
+  });
+
   // --- Contact form: capture landing page + UTM, submit UX ------------------
   var forms = document.querySelectorAll('.js-contact-form');
   forms.forEach(function (form) {

@@ -45,6 +45,7 @@ final class SectionRegistry
                     'heading'    => ['type' => 'text',     'label' => 'Heading'],
                     'body'       => ['type' => 'richtext', 'label' => 'Body'],
                     'image_id'   => ['type' => 'media',    'label' => 'Image'],
+                    'alt'        => ['type' => 'text',     'label' => 'Image alt text (accessibility / SEO)'],
                     'image_side' => ['type' => 'select',   'label' => 'Image side', 'options' => ['left', 'right']],
                 ],
             ],

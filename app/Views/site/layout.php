@@ -31,7 +31,7 @@ $ogImage = $seo['og_image'] ?? '';
     <?php endif; ?>
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="<?= e($seo['og_type'] ?? 'website') ?>">
     <meta property="og:site_name" content="<?= e($seo['site_name'] ?? $settings->websiteName()) ?>">
     <meta property="og:title" content="<?= e($seo['og_title'] ?? $seo['title'] ?? '') ?>">
     <?php if (!empty($seo['og_description'])): ?>

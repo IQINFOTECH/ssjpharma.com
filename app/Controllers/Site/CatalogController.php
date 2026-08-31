@@ -112,6 +112,7 @@ final class CatalogController extends SiteController
         ];
         $path = '/products/' . $product['slug'];
         $seo = $this->seo()->forPage($seoPage, $path);
+        $seo['og_type'] = 'product'; // product detail pages are og:type=product, not website
 
         // Breadcrumbs: Home → Products → [Category] → Product
         $base = $this->settings()->websiteUrl();

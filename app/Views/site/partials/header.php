@@ -11,16 +11,19 @@ $logo = $settings->mediaUrl('company_logo');
 $company = $settings->companyName();
 
 $renderTop = static function (array $items): string {
+    static $n = 0;
     $html = '';
     foreach ($items as $item) {
         $target = $item['open_new_tab'] ? ' target="_blank" rel="noopener"' : '';
         if (!empty($item['children'])) {
-            $html .= '<div class="relative group">';
-            $html .= '<a href="' . e($item['url']) . '" class="nav-link inline-flex items-center gap-1"' . $target . '>'
+            $panelId = 'nav-dd-' . (++$n);
+            $html .= '<div class="relative group js-dropdown">';
+            // Keyboard: focus-within reveals the panel; JS keeps aria-expanded honest.
+            $html .= '<a href="' . e($item['url']) . '" class="js-dropdown-trigger nav-link inline-flex items-center gap-1" aria-haspopup="true" aria-expanded="false" aria-controls="' . $panelId . '"' . $target . '>'
                    . e($item['label'])
-                   . '<svg class="h-3.5 w-3.5 opacity-60" viewBox="0 0 20 20" fill="currentColor"><path d="M5.5 7.5 10 12l4.5-4.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>'
+                   . '<svg class="h-3.5 w-3.5 opacity-60" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5.5 7.5 10 12l4.5-4.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>'
                    . '</a>';
-            $html .= '<div class="invisible absolute left-0 top-full z-40 mt-2 min-w-[220px] rounded-xl border border-slate-100 bg-white p-2 opacity-0 shadow-card transition group-hover:visible group-hover:opacity-100">';
+            $html .= '<div id="' . $panelId . '" class="invisible absolute left-0 top-full z-40 mt-2 min-w-[220px] rounded-xl border border-slate-100 bg-white p-2 opacity-0 shadow-card transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">';
             foreach ($item['children'] as $child) {
                 $ct = $child['open_new_tab'] ? ' target="_blank" rel="noopener"' : '';
                 $html .= '<a href="' . e($child['url']) . '" class="block rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-700"' . $ct . '>' . e($child['label']) . '</a>';
@@ -49,6 +52,12 @@ $renderTop = static function (array $items): string {
     </nav>
 
     <div class="hidden items-center gap-3 lg:flex">
+      <?php if ($whatsappLink !== ''): ?>
+      <a href="<?= e($whatsappLink) ?>" target="_blank" rel="noopener" data-wa-context="header" class="btn btn-whatsapp">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
+        WhatsApp
+      </a>
+      <?php endif; ?>
       <a href="/contact-us" class="btn btn-primary">Enquire Now</a>
     </div>
 

@@ -72,14 +72,24 @@ final class StructuredDataService
         return $org;
     }
 
-    /** @return array<string,mixed> schema.org WebSite */
+    /** @return array<string,mixed> schema.org WebSite (with product-search action) */
     public function website(): array
     {
+        $base = $this->settings->websiteUrl();
         return [
             '@context' => 'https://schema.org',
             '@type'    => 'WebSite',
             'name'     => $this->settings->websiteName(),
-            'url'      => $this->settings->websiteUrl(),
+            'url'      => $base,
+            // Lets engines offer a sitelinks search box that queries the catalogue.
+            'potentialAction' => [
+                '@type'       => 'SearchAction',
+                'target'      => [
+                    '@type'       => 'EntryPoint',
+                    'urlTemplate' => $base . '/products?q={search_term_string}',
+                ],
+                'query-input' => 'required name=search_term_string',
+            ],
         ];
     }
 

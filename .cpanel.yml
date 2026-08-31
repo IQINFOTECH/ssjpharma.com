@@ -21,7 +21,7 @@
 
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/USERNAME/public_html
+    - export DEPLOYPATH=/home/bpur5ap0v7g6/public_html
     - export PHP=/usr/local/bin/php
     # Copy the application into the docroot. Does NOT touch the existing .env
     # (it is not in the repo) or public/uploads (owner media is preserved — cp

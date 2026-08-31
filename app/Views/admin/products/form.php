@@ -203,17 +203,23 @@ $tabs = [
 </section>
 
 <!-- Main-form actions: placed after all panels so they sit at the BOTTOM on every
-     tab (hidden panels collapse). The button submits the main form via form=. -->
-<div class="mt-6 flex gap-3">
-  <button form="product-form" class="btn btn-primary"><?= $isEdit ? 'Save product' : 'Save draft' ?></button>
-  <a href="/admin/products" class="btn btn-ghost">Cancel</a>
+     tab (hidden panels collapse). Save submits the main form via form=. Archive is
+     a distinct outline-danger button, right-aligned so it can't be misclicked next
+     to Save. -->
+<div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+  <div class="flex gap-3">
+    <button form="product-form" class="btn btn-primary"><?= $isEdit ? 'Save product' : 'Save draft' ?></button>
+    <a href="/admin/products" class="btn btn-ghost">Cancel</a>
+  </div>
+  <?php if ($isEdit && ($canDelete ?? true)): ?>
+  <form method="post" action="/admin/products/<?= $pid ?>/delete" class="js-confirm" data-confirm="Archive this product?">
+    <?= csrf_field() ?><?= method_field('DELETE') ?>
+    <button class="btn border border-red-300 bg-white text-red-600 hover:bg-red-50 focus-visible:ring-red-500">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h18M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-9 0v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Archive product
+    </button>
+  </form>
+  <?php endif; ?>
 </div>
-
-<?php if ($isEdit && ($canDelete ?? true)): ?>
-<form method="post" action="/admin/products/<?= $pid ?>/delete" class="js-confirm mt-6" data-confirm="Archive this product?">
-  <?= csrf_field() ?><?= method_field('DELETE') ?>
-  <button class="text-sm font-medium text-red-500 hover:text-red-700">Archive product</button>
-</form>
-<?php endif; ?>
 
 <?php $this->stop(); ?>

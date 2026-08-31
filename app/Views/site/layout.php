@@ -53,6 +53,8 @@ $ogImage = $seo['og_image'] ?? '';
 
     <?php if ($favicon !== ''): ?>
     <link rel="icon" href="<?= e($favicon) ?>">
+    <?php else: ?>
+    <link rel="icon" type="image/svg+xml" href="<?= e(asset('brand-mark.svg')) ?>">
     <?php endif; ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

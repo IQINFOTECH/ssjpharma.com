@@ -14,9 +14,9 @@ INSERT IGNORE INTO `settings` (`key`,`value`,`type`,`group`,`label`,`sort_order`
   ('company_state',       'Uttarakhand',             'string', 'company', 'State / Region',      42),
   ('company_postal',      '248171',                  'string', 'company', 'Postal Code',         43),
   ('company_country',     'India',                   'string', 'company', 'Country',             44),
-  ('company_phone',       '',                        'string', 'company', 'Phone',               50),
-  ('company_email',       '',                        'email',  'company', 'Email',               60),
-  ('company_whatsapp',    '',                        'string', 'company', 'WhatsApp',            70),
+  ('company_phone',       '+91 81714 88909',         'string', 'company', 'Phone',               50),
+  ('company_email',       'sales@ssjpharma.com',      'email',  'company', 'Email',               60),
+  ('company_whatsapp',    '918171488909',            'string', 'company', 'WhatsApp',            70),
   ('company_description',  '',                       'text',   'company', 'Business Description', 80),
 
   -- Website
@@ -33,13 +33,13 @@ INSERT IGNORE INTO `settings` (`key`,`value`,`type`,`group`,`label`,`sort_order`
   ('social_youtube',      '', 'url', 'social', 'YouTube',   40),
 
   -- Lead
-  ('lead_sales_email',        '',       'email',  'lead', 'Sales Email',           10),
-  ('lead_notification_email', '',       'email',  'lead', 'Notification Email',    20),
+  ('lead_sales_email',        'sales@ssjpharma.com', 'email',  'lead', 'Sales Email',           10),
+  ('lead_notification_email', 'sales@ssjpharma.com', 'email',  'lead', 'Notification Email',    20),
   ('lead_default_status',     'new',    'string', 'lead', 'Default Lead Status',   30),
   ('lead_default_priority',   'normal', 'string', 'lead', 'Default Lead Priority', 40),
 
   -- WhatsApp (click-to-chat only)
-  ('whatsapp_number',          '', 'string', 'whatsapp', 'WhatsApp Number', 10),
+  ('whatsapp_number',          '918171488909', 'string', 'whatsapp', 'WhatsApp Number', 10),
   ('whatsapp_default_message', 'Hello SSJ Pharmaceuticals, I would like to know more about your products.',
                                    'text',   'whatsapp', 'Default WhatsApp Message', 20),
 

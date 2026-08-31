@@ -18,7 +18,7 @@ $socials = $settings->socialLinks();
     <!-- Company column -->
     <div>
       <div class="mb-4 flex items-center gap-2.5">
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 font-display text-lg font-bold text-white">S</span>
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1"><img src="<?= e(asset('brand-mark.svg')) ?>" alt="" width="32" height="32" class="h-full w-full"></span>
         <span class="font-display text-lg font-semibold text-white"><?= e($company) ?></span>
       </div>
       <?php if ($settings->get('company_description') !== ''): ?>

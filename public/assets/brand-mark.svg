@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="SSJ Pharmaceuticals">
+  <title>SSJ Pharmaceuticals</title>
+  <g fill="none" stroke="#2b4a9e" stroke-width="9" stroke-linecap="round">
+    <path d="M62 11 A42 42 0 0 0 11 44"/>
+    <path d="M38 89 A42 42 0 0 0 89 56"/>
+  </g>
+  <text x="50" y="63" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="33" letter-spacing="-1.5" fill="#d81f26">SSJ</text>
+</svg>

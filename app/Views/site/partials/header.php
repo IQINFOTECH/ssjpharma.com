@@ -39,7 +39,7 @@ $renderTop = static function (array $items): string {
       <?php if ($logo !== ''): ?>
         <img src="<?= e($logo) ?>" alt="<?= e($company) ?>" class="h-9 w-auto lg:h-10">
       <?php else: ?>
-        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-900 font-display text-lg font-bold text-white">S</span>
+        <img src="<?= e(asset('brand-mark.svg')) ?>" alt="" width="40" height="40" class="h-9 w-9 lg:h-10 lg:w-10">
         <span class="font-display text-lg font-semibold text-brand-900"><?= e($company) ?></span>
       <?php endif; ?>
     </a>

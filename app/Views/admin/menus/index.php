@@ -72,7 +72,7 @@ $parentOptions = static function (array $items, int $selected, int $selfId): str
             <button type="submit" form="mi-del-<?= $iid ?>" class="text-xs font-medium text-red-500 hover:text-red-700">Delete item</button>
           </div>
         </form>
-        <form id="mi-del-<?= $iid ?>" method="post" action="/admin/menu-items/<?= $iid ?>/delete" class="hidden" onsubmit="return confirm('Remove this menu item?');">
+        <form id="mi-del-<?= $iid ?>" method="post" action="/admin/menu-items/<?= $iid ?>/delete" class="js-confirm hidden" data-confirm="Remove this menu item?">
           <?= csrf_field() ?>
           <input type="hidden" name="menu_id" value="<?= (int) $menu['id'] ?>">
         </form>

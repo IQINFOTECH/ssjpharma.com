@@ -60,7 +60,7 @@ if (($canViewLeads ?? false) && !empty($leadMetrics)) {
       </thead>
       <tbody class="divide-y divide-slate-100">
         <?php foreach ($recentLeads as $lead): ?>
-          <tr class="<?= ($canViewLeads ?? false) ? 'cursor-pointer hover:bg-slate-50' : '' ?>"<?php if ($canViewLeads ?? false): ?> onclick="location.href='/admin/leads/<?= (int) $lead['id'] ?>'"<?php endif; ?>>
+          <tr class="<?= ($canViewLeads ?? false) ? 'js-row-link cursor-pointer hover:bg-slate-50' : '' ?>"<?php if ($canViewLeads ?? false): ?> data-href="/admin/leads/<?= (int) $lead['id'] ?>"<?php endif; ?>>
             <td class="px-5 py-3 font-mono text-xs text-slate-500"><?= e($lead['reference']) ?></td>
             <td class="px-5 py-3 text-brand-900"><?= e($lead['name']) ?></td>
             <td class="px-5 py-3 text-slate-500"><?= e(ucfirst((string) ($lead['enquiry_type'] ?? 'general'))) ?></td>

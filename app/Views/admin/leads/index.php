@@ -106,15 +106,15 @@ $secondary = [
   <div class="overflow-x-auto">
   <table class="w-full text-sm">
     <thead class="text-left text-xs uppercase tracking-wide text-slate-400">
-      <tr><th class="px-5 py-3">Lead</th><th class="px-5 py-3">Company</th><th class="px-5 py-3">Enquiry</th><th class="px-5 py-3">Product</th><th class="px-5 py-3">Source</th><th class="px-5 py-3">Status</th><th class="px-5 py-3">Priority</th><th class="px-5 py-3">Assigned</th><th class="px-5 py-3">Follow-up</th><th class="px-5 py-3">Created</th></tr>
+      <tr><th class="px-5 py-3">Lead</th><th class="px-5 py-3">Company</th><th class="px-5 py-3">Enquiry</th><th class="px-5 py-3">Product</th><th class="px-5 py-3">Source</th><th class="px-5 py-3">Status</th><th class="px-5 py-3">Priority</th><th class="px-5 py-3">Assigned</th><th class="px-5 py-3">Follow-up</th><th class="px-5 py-3">Created</th><th class="px-5 py-3 text-right">Action</th></tr>
     </thead>
     <tbody class="divide-y divide-slate-100">
       <?php if (empty($rows)): ?>
-        <tr><td colspan="10" class="px-5 py-10 text-center text-slate-400">No leads found.</td></tr>
+        <tr><td colspan="11" class="px-5 py-10 text-center text-slate-400">No leads found.</td></tr>
       <?php else: foreach ($rows as $l): ?>
-        <tr class="cursor-pointer hover:bg-slate-50" onclick="location.href='/admin/leads/<?= (int) $l['id'] ?>'">
+        <tr class="js-row-link cursor-pointer hover:bg-slate-50" data-href="/admin/leads/<?= (int) $l['id'] ?>">
           <td class="px-5 py-3">
-            <div class="font-medium text-brand-900"><?= e($l['name']) ?><?php if ((int) $l['is_spam'] === 1): ?> <span class="badge badge-slate ml-1">Spam</span><?php endif; ?></div>
+            <div class="font-medium text-brand-900"><a href="/admin/leads/<?= (int) $l['id'] ?>" class="hover:underline"><?= e($l['name']) ?></a><?php if ((int) $l['is_spam'] === 1): ?> <span class="badge badge-slate ml-1">Spam</span><?php endif; ?></div>
             <div class="text-xs text-slate-400"><?= e($l['email'] ?: $l['phone'] ?: $l['reference']) ?></div>
           </td>
           <td class="px-5 py-3 text-slate-600"><?= e($l['company'] ?: '—') ?></td>
@@ -127,6 +127,15 @@ $secondary = [
           <?php $fu = $l['follow_up_date'] ?? null; $overdue = $fu && $fu < date('Y-m-d'); ?>
           <td class="px-5 py-3 <?= $overdue ? 'font-medium text-red-600' : 'text-slate-500' ?>"><?= $fu ? e($fu) : '—' ?></td>
           <td class="px-5 py-3 text-slate-500"><?= e(substr((string) $l['created_at'], 0, 16)) ?></td>
+          <td class="px-5 py-3 text-right whitespace-nowrap">
+            <a href="/admin/leads/<?= (int) $l['id'] ?>" class="text-xs font-medium text-brand-600 hover:text-brand-700">View</a>
+            <?php if ($canDelete ?? false): ?>
+            <form method="post" action="/admin/leads/<?= (int) $l['id'] ?>/delete" class="js-confirm ml-3 inline" data-confirm="Delete this lead? This cannot be undone.">
+              <?= csrf_field() ?><?= method_field('DELETE') ?>
+              <button class="text-xs font-medium text-red-500 hover:text-red-700">Delete</button>
+            </form>
+            <?php endif; ?>
+          </td>
         </tr>
       <?php endforeach; endif; ?>
     </tbody>

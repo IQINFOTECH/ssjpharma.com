@@ -60,13 +60,25 @@ final class MenuItemRepository extends Repository
 
     public function update(int $id, array $data): void
     {
-        $data['id'] = $id;
+        // Bind ONLY the columns this UPDATE writes. $data also carries `menu_id`
+        // (used by create/scoping), which has no placeholder here — passing it
+        // would throw HY093 under native prepared statements (EMULATE_PREPARES=false).
         $this->db->statement(
             "UPDATE `menu_items` SET
               `parent_id`=:parent_id, `label`=:label, `page_id`=:page_id, `url`=:url,
               `is_external`=:is_external, `open_new_tab`=:open_new_tab, `sort_order`=:sort_order, `is_active`=:is_active
              WHERE `id`=:id",
-            $data
+            [
+                'parent_id'    => $data['parent_id'] ?? null,
+                'label'        => $data['label'] ?? '',
+                'page_id'      => $data['page_id'] ?? null,
+                'url'          => $data['url'] ?? null,
+                'is_external'  => $data['is_external'] ?? 0,
+                'open_new_tab' => $data['open_new_tab'] ?? 0,
+                'sort_order'   => $data['sort_order'] ?? 0,
+                'is_active'    => $data['is_active'] ?? 1,
+                'id'           => $id,
+            ]
         );
     }
 

@@ -21,7 +21,7 @@ $srcdoc = htmlspecialchars((string) ($row['body_html'] ?? ''), ENT_QUOTES, 'UTF-
       <form method="post" action="/admin/email-queue/<?= $id ?>/retry"><?= csrf_field() ?><button class="btn btn-primary">Requeue</button></form>
     <?php endif; ?>
     <?php if (in_array($row['status'], ['pending', 'failed'], true)): ?>
-      <form method="post" action="/admin/email-queue/<?= $id ?>/cancel" onsubmit="return confirm('Cancel this message?');"><?= csrf_field() ?><button class="btn btn-ghost">Cancel</button></form>
+      <form method="post" action="/admin/email-queue/<?= $id ?>/cancel" class="js-confirm" data-confirm="Cancel this message?"><?= csrf_field() ?><button class="btn btn-ghost">Cancel</button></form>
     <?php endif; ?>
   </div>
   <?php endif; ?>

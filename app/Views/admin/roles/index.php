@@ -37,7 +37,7 @@ $this->layout('admin.layout');
             <div class="flex items-center justify-end gap-3">
               <a href="/admin/roles/<?= (int) $r['id'] ?>/edit" class="font-medium text-brand-600 hover:text-brand-700"><?= $canEdit ? 'Edit' : 'View' ?></a>
               <?php if ($canDelete && (int) $r['is_system'] === 0): ?>
-                <form method="post" action="/admin/roles/<?= (int) $r['id'] ?>/delete" onsubmit="return confirm('Delete this role?');">
+                <form method="post" action="/admin/roles/<?= (int) $r['id'] ?>/delete" class="js-confirm" data-confirm="Delete this role?">
                   <?= csrf_field() ?><?= method_field('DELETE') ?>
                   <button class="text-red-500 hover:text-red-700">Delete</button>
                 </form>

@@ -123,14 +123,6 @@ $title = ($title ?? 'Admin') . ' · ' . e($siteName);
     </main>
   </div>
 </div>
-<script>
-  (function(){
-    var sb=document.getElementById('admin-sidebar'),ov=document.querySelector('.js-admin-overlay');
-    function open(){sb.classList.remove('-translate-x-full');ov.classList.remove('hidden');}
-    function close(){sb.classList.add('-translate-x-full');ov.classList.add('hidden');}
-    document.querySelectorAll('.js-admin-toggle').forEach(function(b){b.addEventListener('click',open);});
-    if(ov)ov.addEventListener('click',close);
-  })();
-</script>
+<script src="<?= e(asset('js/admin.js')) ?>" defer></script>
 </body>
 </html>

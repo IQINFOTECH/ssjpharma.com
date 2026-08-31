@@ -170,7 +170,7 @@ $notifBadge = match ($lead['notification_status'] ?? 'pending') {
     </div>
 
     <?php if ($canDelete): ?>
-    <form method="post" action="/admin/leads/<?= $id ?>/delete" class="rounded-xl border border-red-200 bg-red-50/50 p-5" onsubmit="return confirm('Delete this lead?');">
+    <form method="post" action="/admin/leads/<?= $id ?>/delete" class="js-confirm rounded-xl border border-red-200 bg-red-50/50 p-5" data-confirm="Delete this lead?">
       <?= csrf_field() ?><?= method_field('DELETE') ?>
       <h3 class="text-sm font-semibold text-red-700">Delete lead</h3>
       <button class="btn mt-2 border border-red-300 bg-white text-red-600 hover:bg-red-50">Delete</button>

@@ -49,7 +49,7 @@ $this->layout('admin.layout');
         <div class="col-span-1"><input type="checkbox" name="is_active" value="1" class="rounded border-slate-300 text-brand-600" <?= (int) $r['is_active'] === 1 ? 'checked' : '' ?>></div>
         <div class="col-span-2 text-right"><button class="btn btn-ghost px-3 py-1 text-xs">Save</button></div>
       </form>
-      <form method="post" action="/admin/redirects/<?= (int) $r['id'] ?>/delete" class="mt-1 text-right" onsubmit="return confirm('Delete redirect?');">
+      <form method="post" action="/admin/redirects/<?= (int) $r['id'] ?>/delete" class="js-confirm mt-1 text-right" data-confirm="Delete redirect?">
         <?= csrf_field() ?>
         <button class="text-xs font-medium text-red-500 hover:text-red-700">Delete</button>
         <span class="ml-2 text-xs text-slate-400"><?= (int) $r['hits'] ?> hits</span>

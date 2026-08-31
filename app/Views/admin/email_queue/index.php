@@ -37,7 +37,7 @@ $badge = static fn (string $s): string => match ($s) {
       <?php if (empty($rows)): ?>
         <tr><td colspan="7" class="px-5 py-10 text-center text-slate-400">No messages.</td></tr>
       <?php else: foreach ($rows as $m): ?>
-        <tr class="cursor-pointer hover:bg-slate-50" onclick="location.href='/admin/email-queue/<?= (int) $m['id'] ?>'">
+        <tr class="js-row-link cursor-pointer hover:bg-slate-50" data-href="/admin/email-queue/<?= (int) $m['id'] ?>">
           <td class="px-5 py-3 text-slate-500">#<?= (int) $m['id'] ?></td>
           <td class="px-5 py-3 text-slate-700"><?= e($m['recipient_email']) ?></td>
           <td class="px-5 py-3 text-slate-600"><?= e(mb_strimwidth((string) $m['subject'], 0, 60, '…')) ?></td>

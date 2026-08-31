@@ -36,7 +36,7 @@ $v = static fn (string $k, $d = '') => e((string) ($area[$k] ?? $d));
   <div class="flex gap-3"><button class="btn btn-primary"><?= $isEdit ? 'Save' : 'Create' ?></button><a href="/admin/therapeutic-areas" class="btn btn-ghost">Cancel</a></div>
 </form>
 <?php if ($isEdit): ?>
-<form method="post" action="/admin/therapeutic-areas/<?= (int) $area['id'] ?>/delete" class="mt-4 max-w-2xl" onsubmit="return confirm('Archive this therapeutic area?');">
+<form method="post" action="/admin/therapeutic-areas/<?= (int) $area['id'] ?>/delete" class="js-confirm mt-4 max-w-2xl" data-confirm="Archive this therapeutic area?">
   <?= csrf_field() ?><?= method_field('DELETE') ?>
   <button class="text-sm font-medium text-red-500 hover:text-red-700">Archive therapeutic area</button>
 </form>

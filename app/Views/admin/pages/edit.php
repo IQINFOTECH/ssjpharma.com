@@ -143,7 +143,7 @@ $renderField = static function (string $name, array $meta, array $data): string 
       <p class="mt-1"><span class="text-slate-400">Updated:</span> <?= e(substr((string) $page['updated_at'], 0, 16)) ?></p>
     </div>
     <?php if ((int) $page['is_home'] !== 1): ?>
-    <form method="post" action="/admin/pages/<?= $pid ?>/delete" class="rounded-xl border border-red-200 bg-red-50/50 p-5" onsubmit="return confirm('Delete this page? This cannot be undone.');">
+    <form method="post" action="/admin/pages/<?= $pid ?>/delete" class="js-confirm rounded-xl border border-red-200 bg-red-50/50 p-5" data-confirm="Delete this page? This cannot be undone.">
       <?= csrf_field() ?>
       <?= method_field('DELETE') ?>
       <h3 class="text-sm font-semibold text-red-700">Delete page</h3>
@@ -201,8 +201,8 @@ $renderField = static function (string $name, array $meta, array $data): string 
         <button class="btn btn-primary">Save section</button>
       </div>
     </form>
-    <form method="post" action="/admin/sections/<?= (int) $sec['id'] ?>/delete" class="-mt-3 mb-4 px-5"
-          onsubmit="return confirm('Remove this section?');">
+    <form method="post" action="/admin/sections/<?= (int) $sec['id'] ?>/delete" class="js-confirm -mt-3 mb-4 px-5"
+          data-confirm="Remove this section?">
       <?= csrf_field() ?>
       <input type="hidden" name="page_id" value="<?= $pid ?>">
       <button class="text-xs font-medium text-red-500 hover:text-red-700">Remove section</button>

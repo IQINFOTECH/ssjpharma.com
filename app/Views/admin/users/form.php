@@ -87,7 +87,7 @@ $isSelf = $isSelf ?? false;
     <div class="rounded-xl border border-slate-200 bg-white p-5">
       <h3 class="text-sm font-semibold text-brand-900">Reset password</h3>
       <p class="mt-1 text-xs text-slate-500">Sets a new password; the user must change it at next login. Active sessions are revoked.</p>
-      <form method="post" action="/admin/users/<?= (int) $user['id'] ?>/reset-password" class="mt-3 space-y-2" onsubmit="return confirm('Reset this user\'s password?');">
+      <form method="post" action="/admin/users/<?= (int) $user['id'] ?>/reset-password" class="js-confirm mt-3 space-y-2" data-confirm="Reset this user's password?">
         <?= csrf_field() ?>
         <input type="password" name="new_password" class="input-admin" minlength="10" placeholder="New password" required autocomplete="new-password">
         <button class="btn btn-ghost w-full">Reset password</button>

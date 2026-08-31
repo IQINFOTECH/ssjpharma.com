@@ -30,7 +30,7 @@ $this->layout('admin.layout');
         <label class="col-span-3 inline-flex items-center gap-2 text-sm text-slate-600"><input type="checkbox" name="is_active" value="1" class="rounded border-slate-300 text-brand-600" <?= (int) $r['is_active'] === 1 ? 'checked' : '' ?>> Active</label>
         <div class="col-span-2 text-right"><button class="btn btn-ghost px-3 py-1 text-xs">Save</button></div>
       </form>
-      <form method="post" action="/admin/dosage-forms/<?= (int) $r['id'] ?>/delete" class="mt-1 text-right" onsubmit="return confirm('Delete this dosage form?');">
+      <form method="post" action="/admin/dosage-forms/<?= (int) $r['id'] ?>/delete" class="js-confirm mt-1 text-right" data-confirm="Delete this dosage form?">
         <?= csrf_field() ?>
         <button class="text-xs font-medium text-red-500 hover:text-red-700">Delete</button>
       </form>

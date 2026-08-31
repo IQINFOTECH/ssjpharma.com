@@ -32,7 +32,7 @@ $this->layout('admin.layout');
           </td>
           <td class="px-5 py-3 text-right">
             <?php if (!$isCurrent): ?>
-              <form method="post" action="/admin/sessions/<?= (int) $s['id'] ?>/revoke" onsubmit="return confirm('Revoke this session?');">
+              <form method="post" action="/admin/sessions/<?= (int) $s['id'] ?>/revoke" class="js-confirm" data-confirm="Revoke this session?">
                 <?= csrf_field() ?>
                 <button class="text-red-500 hover:text-red-700">Revoke</button>
               </form>

@@ -165,7 +165,7 @@ $tabs = [
             <?php if ((int) $img['is_primary'] === 1): ?><span class="badge badge-green">Primary</span><?php else: ?>
               <form method="post" action="/admin/products/<?= $pid ?>/images/<?= (int) $img['id'] ?>/primary" class="inline"><?= csrf_field() ?><button class="text-xs text-brand-600 hover:text-brand-700">Set primary</button></form>
             <?php endif; ?>
-            <form method="post" action="/admin/products/<?= $pid ?>/images/<?= (int) $img['id'] ?>/delete" class="mt-1" onsubmit="return confirm('Remove image?');"><?= csrf_field() ?><button class="text-xs text-red-500 hover:text-red-700">Delete</button></form>
+            <form method="post" action="/admin/products/<?= $pid ?>/images/<?= (int) $img['id'] ?>/delete" class="js-confirm mt-1" data-confirm="Remove image?"><?= csrf_field() ?><button class="text-xs text-red-500 hover:text-red-700">Delete</button></form>
           </div>
         </div>
       <?php endforeach; ?>
@@ -196,7 +196,7 @@ $tabs = [
         <div class="flex items-center justify-between border-b border-slate-100 px-5 py-3">
           <div><a href="<?= e($doc['url_path']) ?>" target="_blank" rel="noopener" class="font-medium text-brand-700 hover:underline"><?= e($doc['display_name']) ?></a>
             <span class="ml-2 text-xs text-slate-400"><?= e(strtoupper(str_replace('_', ' ', $doc['doc_type']))) ?> · <?= e(number_format($doc['size_bytes'] / 1024, 0)) ?> KB</span></div>
-          <form method="post" action="/admin/products/<?= $pid ?>/documents/<?= (int) $doc['id'] ?>/delete" onsubmit="return confirm('Remove document?');"><?= csrf_field() ?><button class="text-xs text-red-500 hover:text-red-700">Delete</button></form>
+          <form method="post" action="/admin/products/<?= $pid ?>/documents/<?= (int) $doc['id'] ?>/delete" class="js-confirm" data-confirm="Remove document?"><?= csrf_field() ?><button class="text-xs text-red-500 hover:text-red-700">Delete</button></form>
         </div>
       <?php endforeach; endif; ?>
     </div>
@@ -204,34 +204,10 @@ $tabs = [
 </section>
 
 <?php if ($isEdit && ($canDelete ?? true)): ?>
-<form method="post" action="/admin/products/<?= $pid ?>/delete" class="mt-6" onsubmit="return confirm('Archive this product?');">
+<form method="post" action="/admin/products/<?= $pid ?>/delete" class="js-confirm mt-6" data-confirm="Archive this product?">
   <?= csrf_field() ?><?= method_field('DELETE') ?>
   <button class="text-sm font-medium text-red-500 hover:text-red-700">Archive product</button>
 </form>
 <?php endif; ?>
 
-<script>
-(function(){
-  var tabs=document.querySelectorAll('.js-tab'),panels=document.querySelectorAll('[data-panel]');
-  function show(key){
-    panels.forEach(function(p){p.classList.toggle('hidden',p.getAttribute('data-panel')!==key);});
-    tabs.forEach(function(t){var on=t.getAttribute('data-tab')===key;
-      t.classList.toggle('border-brand-500',on);t.classList.toggle('text-brand-700',on);
-      t.classList.toggle('border-transparent',!on);t.classList.toggle('text-slate-500',!on);});
-  }
-  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.getAttribute('data-tab'));});});
-  if(location.hash){var k=location.hash.replace('#','');if(document.querySelector('[data-panel="'+k+'"]'))show(k);}
-  // Spec repeater
-  var add=document.getElementById('spec-add'),rows=document.getElementById('spec-rows');
-  if(add&&rows){
-    add.addEventListener('click',function(){
-      var r=rows.querySelector('.js-spec-row');if(!r)return;var c=r.cloneNode(true);
-      c.querySelectorAll('input').forEach(function(i){i.value='';});rows.appendChild(c);
-    });
-    rows.addEventListener('click',function(e){
-      if(e.target.classList.contains('js-spec-remove')){var all=rows.querySelectorAll('.js-spec-row');if(all.length>1)e.target.closest('.js-spec-row').remove();else e.target.closest('.js-spec-row').querySelectorAll('input').forEach(function(i){i.value='';});}
-    });
-  }
-})();
-</script>
 <?php $this->stop(); ?>

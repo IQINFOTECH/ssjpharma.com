@@ -56,9 +56,9 @@ $isImage = static fn (string $mime): bool => str_starts_with($mime, 'image/');
             <button class="btn btn-ghost px-3 py-1 text-xs">Save</button>
           </form>
           <div class="mt-2 flex items-center justify-between">
-            <input readonly value="<?= e($m['url_path']) ?>" class="w-full rounded border border-slate-200 bg-slate-50 px-2 py-1 text-xs text-slate-500" onclick="this.select()">
+            <input readonly value="<?= e($m['url_path']) ?>" class="js-select-on-click w-full rounded border border-slate-200 bg-slate-50 px-2 py-1 text-xs text-slate-500">
           </div>
-          <form method="post" action="/admin/media/<?= (int) $m['id'] ?>/delete" class="mt-2" onsubmit="return confirm('Delete this file?');">
+          <form method="post" action="/admin/media/<?= (int) $m['id'] ?>/delete" class="js-confirm mt-2" data-confirm="Delete this file?">
             <?= csrf_field() ?>
             <button class="text-xs font-medium text-red-500 hover:text-red-700">Delete</button>
           </form>

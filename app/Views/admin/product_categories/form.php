@@ -48,7 +48,7 @@ $canEdit = $canEdit ?? true;
 </form>
 
 <?php if ($isEdit && ($canDelete ?? true)): ?>
-<form method="post" action="/admin/product-categories/<?= (int) $category['id'] ?>/delete" class="mt-4 max-w-2xl" onsubmit="return confirm('Archive this category?');">
+<form method="post" action="/admin/product-categories/<?= (int) $category['id'] ?>/delete" class="js-confirm mt-4 max-w-2xl" data-confirm="Archive this category?">
   <?= csrf_field() ?><?= method_field('DELETE') ?>
   <button class="text-sm font-medium text-red-500 hover:text-red-700">Archive category</button>
 </form>

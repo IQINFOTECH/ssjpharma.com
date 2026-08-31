@@ -58,14 +58,14 @@ $curId = (int) ($currentUser['id'] ?? 0);
               <a href="/admin/users/<?= $uid ?>/edit" class="font-medium text-brand-600 hover:text-brand-700"><?= $canEdit ? 'Edit' : 'View' ?></a>
               <a href="/admin/users/<?= $uid ?>/activity" class="text-slate-500 hover:text-brand-600">Activity</a>
               <?php if ($canActivate && $uid !== $curId): ?>
-                <form method="post" action="/admin/users/<?= $uid ?>/active" class="inline" onsubmit="return confirm('<?= (int) $u['is_active'] === 1 ? 'Deactivate' : 'Activate' ?> this user?');">
+                <form method="post" action="/admin/users/<?= $uid ?>/active" class="js-confirm inline" data-confirm="<?= (int) $u['is_active'] === 1 ? 'Deactivate' : 'Activate' ?> this user?">
                   <?= csrf_field() ?>
                   <input type="hidden" name="active" value="<?= (int) $u['is_active'] === 1 ? '0' : '1' ?>">
                   <button class="<?= (int) $u['is_active'] === 1 ? 'text-amber-600' : 'text-green-600' ?> hover:underline"><?= (int) $u['is_active'] === 1 ? 'Deactivate' : 'Activate' ?></button>
                 </form>
               <?php endif; ?>
               <?php if ($canDelete && $uid !== $curId): ?>
-                <form method="post" action="/admin/users/<?= $uid ?>/delete" class="inline" onsubmit="return confirm('Delete this user? This cannot be undone.');">
+                <form method="post" action="/admin/users/<?= $uid ?>/delete" class="js-confirm inline" data-confirm="Delete this user? This cannot be undone.">
                   <?= csrf_field() ?><?= method_field('DELETE') ?>
                   <button class="text-red-500 hover:text-red-700">Delete</button>
                 </form>

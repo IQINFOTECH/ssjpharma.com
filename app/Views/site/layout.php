@@ -54,6 +54,9 @@ $ogImage = $seo['og_image'] ?? '';
     <?php if ($favicon !== ''): ?>
     <link rel="icon" href="<?= e($favicon) ?>">
     <?php endif; ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,480&family=Inter:wght@400;450;500;600;700&display=swap">
     <link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">
 
     <?php foreach (($jsonLd ?? []) as $block): ?>

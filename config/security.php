@@ -52,9 +52,11 @@ return [
     'csp' => [
         "default-src 'self'",
         "script-src 'self'",
-        "style-src 'self'",
+        // Google Fonts stylesheet host (Fraunces + Inter); the font files come from
+        // fonts.gstatic.com (font-src). Self-hosting WOFF2 later reverts both to 'self'.
+        "style-src 'self' https://fonts.googleapis.com",
         "img-src 'self' data:",
-        "font-src 'self'",
+        "font-src 'self' https://fonts.gstatic.com",
         "connect-src 'self'",
         "form-action 'self'",
         "base-uri 'self'",

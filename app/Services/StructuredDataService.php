@@ -30,6 +30,31 @@ final class StructuredDataService
             $org['logo'] = $this->absolute($logo);
         }
 
+        $desc = $this->settings->get('company_description');
+        if ($desc !== '') {
+            $org['description'] = $desc;
+        }
+
+        // PostalAddress + areaServed for GEO / local presence. Emitted only from
+        // owner-supplied settings — never fabricated. All fields are optional.
+        $street  = $this->settings->get('company_address');
+        $city    = $this->settings->get('company_city');
+        $region  = $this->settings->get('company_state');
+        $postal  = $this->settings->get('company_postal');
+        $country = $this->settings->get('company_country');
+        if ($street !== '' || $city !== '' || $region !== '') {
+            $addr = ['@type' => 'PostalAddress'];
+            if ($street !== '')  { $addr['streetAddress']   = $street; }
+            if ($city !== '')    { $addr['addressLocality'] = $city; }
+            if ($region !== '')  { $addr['addressRegion']   = $region; }
+            if ($postal !== '')  { $addr['postalCode']      = $postal; }
+            if ($country !== '') { $addr['addressCountry']  = $country; }
+            $org['address'] = $addr;
+            if ($country !== '') {
+                $org['areaServed'] = $country; // export regions added when owner confirms
+            }
+        }
+
         $sameAs = array_values($this->settings->socialLinks());
         if ($sameAs !== []) {
             $org['sameAs'] = $sameAs;

@@ -7,7 +7,13 @@ INSERT IGNORE INTO `settings` (`key`,`value`,`type`,`group`,`label`,`sort_order`
   ('company_name',        'SSJ Pharmaceuticals LLP', 'string', 'company', 'Company Name',        10),
   ('company_logo',        '',                        'media',  'company', 'Logo',                20),
   ('company_favicon',     '',                        'media',  'company', 'Favicon',             30),
-  ('company_address',     '',                        'text',   'company', 'Address',             40),
+  -- Registered address (owner-provided; editable in Admin → Settings). Granular
+  -- fields feed a precise Organization PostalAddress for GEO / local presence.
+  ('company_address',     'Sewla Kalan, Shimla Bypass Road, Shiv Lok Colony, Majra', 'text', 'company', 'Address (street)', 40),
+  ('company_city',        'Dehradun',                'string', 'company', 'City',                41),
+  ('company_state',       'Uttarakhand',             'string', 'company', 'State / Region',      42),
+  ('company_postal',      '248171',                  'string', 'company', 'Postal Code',         43),
+  ('company_country',     'India',                   'string', 'company', 'Country',             44),
   ('company_phone',       '',                        'string', 'company', 'Phone',               50),
   ('company_email',       '',                        'email',  'company', 'Email',               60),
   ('company_whatsapp',    '',                        'string', 'company', 'WhatsApp',            70),

@@ -35,9 +35,12 @@ $info = array_filter([
 <section class="container-x py-8 lg:py-12">
   <div class="grid gap-10 lg:grid-cols-2">
     <div>
-      <div class="flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-slate-50">
-        <?php if ($hero !== ''): ?><img src="<?= e($hero) ?>" alt="<?= e($product['name']) ?>" class="h-full w-full object-contain p-6">
-        <?php else: ?><span class="text-6xl text-slate-200" aria-hidden="true">&#9877;</span><?php endif; ?>
+      <div class="relative">
+        <div class="pointer-events-none absolute -inset-2.5 rounded-[1.5rem] bg-gradient-to-br from-brand-500/10 to-teal-500/10" aria-hidden="true"></div>
+        <div class="relative flex aspect-square items-center justify-center overflow-hidden rounded-2xl border border-slate-100 bg-white">
+          <?php if ($hero !== ''): ?><img src="<?= e($hero) ?>" alt="<?= e($product['name']) ?>" class="h-full w-full object-contain p-6">
+          <?php else: ?><span class="text-6xl text-slate-200" aria-hidden="true">&#9877;</span><?php endif; ?>
+        </div>
       </div>
       <?php if (count($images) > 1): ?>
       <div class="mt-4 grid grid-cols-5 gap-2">
@@ -50,7 +53,7 @@ $info = array_filter([
 
     <div>
       <?php if (!empty($product['is_demo'])): ?><span class="eyebrow mb-2 text-amber-600">Demo — replace before production</span><?php endif; ?>
-      <h1 class="text-3xl font-semibold leading-tight sm:text-4xl"><?= e($product['name']) ?></h1>
+      <h1 class="text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl"><?= e($product['name']) ?></h1>
       <?php if (!empty($product['generic_name'])): ?><p class="mt-2 text-lg text-slate-600"><?= e($product['generic_name']) ?></p><?php endif; ?>
       <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
         <?php if (!empty($product['code'])): ?><span class="rounded-full bg-slate-100 px-3 py-1 text-slate-600">Code: <?= e($product['code']) ?></span><?php endif; ?>

@@ -7,11 +7,12 @@ $partials = dirname(__DIR__) . '/partials';
 $qs = array_filter(['q' => $q, 'category' => $catId ?: '', 'ta' => $taId ?: '', 'dosage' => $dfId ?: '']);
 ?>
 <?php $this->start('content'); ?>
-<section class="border-b border-slate-100 bg-gradient-to-b from-brand-50/60 to-white">
-  <div class="container-x py-12 lg:py-16">
-    <span class="eyebrow mb-2">Catalogue</span>
-    <h1 class="text-3xl font-semibold sm:text-4xl">Products</h1>
-    <p class="mt-3 max-w-2xl text-slate-600">Browse our product range. Use the filters to narrow by category, therapeutic area or dosage form.</p>
+<section class="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-brand-50 to-white">
+  <div class="pointer-events-none absolute -right-24 -top-20 h-80 w-80 rounded-full bg-teal-500/10 blur-3xl" aria-hidden="true"></div>
+  <div class="container-x relative py-14 lg:py-20">
+    <span class="eyebrow mb-3">Catalogue</span>
+    <h1 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Products</h1>
+    <p class="mt-4 max-w-2xl text-lg text-slate-600">Browse our product range. Use the filters to narrow by category, therapeutic area or dosage form.</p>
   </div>
 </section>
 

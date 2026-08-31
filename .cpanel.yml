@@ -22,7 +22,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/bpur5ap0v7g6/public_html
-    - export PHP=/usr/local/bin/php
+    - export PHP=/opt/alt/php83/usr/bin/php
     # Copy the application into the docroot. Does NOT touch the existing .env
     # (it is not in the repo) or public/uploads (owner media is preserved — cp
     # never deletes). The repo ships committed vendor/, so no Composer runs.

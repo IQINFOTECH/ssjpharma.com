@@ -3,7 +3,7 @@
 -- admin replaces this content in the CMS.
 
 INSERT IGNORE INTO `pages` (`title`,`slug`,`status`,`template`,`is_home`,`meta_title`,`meta_description`,`robots`,`published_at`) VALUES
-  ('Home',                  'home',                  'published', 'default', 1, 'SSJ Pharmaceuticals', '', 'index,follow', NOW()),
+  ('Home',                  'home',                  'published', 'default', 1, 'SSJ Pharmaceuticals LLP — Pharmaceutical Manufacturing', 'SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company offering contract manufacturing, bulk drug formulation and customized production for businesses and healthcare partners.', 'index,follow', NOW()),
   ('About Us',              'about-us',              'published', 'default', 0, 'About Us',            '', 'index,follow', NOW()),
   ('Quality',               'quality',               'published', 'default', 0, 'Quality',             '', 'index,follow', NOW()),
   ('Contact Us',            'contact-us',            'published', 'contact', 0, 'Contact Us',          '', 'index,follow', NOW()),
@@ -12,15 +12,19 @@ INSERT IGNORE INTO `pages` (`title`,`slug`,`status`,`template`,`is_home`,`meta_t
 
 -- Home sections
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"eyebrow":"","heading":"SSJ Pharmaceuticals","subheading":"This is placeholder content. Edit it in the CMS.","primary_label":"Enquire Now","primary_url":"/contact-us","secondary_label":"","secondary_url":"","image_id":null,"align":"left"}'
+SELECT id, 'hero', 10, '{"eyebrow":"Pharmaceutical Manufacturing","heading":"Quality medicine, manufactured to standard.","subheading":"SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners.","primary_label":"Become a distributor","primary_url":"/become-a-distributor","secondary_label":"Explore products","secondary_url":"/products","image_id":null,"align":"left"}'
 FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id AND s.type='hero');
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'cards', 20, '{"heading":"Placeholder heading","subheading":"","cards":[{"title":"Card one","text":"Placeholder text.","icon":"","url":""},{"title":"Card two","text":"Placeholder text.","icon":"","url":""},{"title":"Card three","text":"Placeholder text.","icon":"","url":""}]}'
+SELECT id, 'cards', 20, '{"heading":"Our manufacturing solutions","subheading":"Pharmaceutical manufacturing services for businesses and healthcare partners.","cards":[{"title":"Contract Manufacturing","text":"Third-party and contract manufacturing for businesses and healthcare partners.","icon":"","url":"/partnership"},{"title":"Bulk Drug Formulation","text":"Bulk drug formulation under defined processes and quality controls.","icon":"","url":"/partnership"},{"title":"Custom Production","text":"Customized pharmaceutical production tailored to partner requirements.","icon":"","url":"/partnership"}]}'
 FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id AND s.type='cards');
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'contact_cta', 30, '{"heading":"Get in touch","text":"Placeholder text. Edit in the CMS.","button_label":"Enquire Now","button_url":"/contact-us"}'
+SELECT id, 'faq', 30, '{"eyebrow":"Common questions","heading":"Answers, up front","items":[{"question":"What does SSJ Pharmaceuticals do?","answer":"SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners."},{"question":"What manufacturing services do you offer?","answer":"We offer pharmaceutical manufacturing solutions including contract manufacturing, bulk drug formulation, and customized pharmaceutical production."},{"question":"How can I partner with SSJ Pharmaceuticals?","answer":"Share your requirement through our distributor or partnership enquiry form and our team will get back to you."},{"question":"How do I get in touch?","answer":"You can reach us by phone or email, or start a WhatsApp chat using the button on the site."}]}'
+FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id AND s.type='faq');
+
+INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
+SELECT id, 'contact_cta', 40, '{"heading":"Discuss your requirement","text":"Tell us about your distribution, manufacturing or partnership needs and we will get back to you.","button_label":"Send an enquiry","button_url":"/contact-us"}'
 FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id AND s.type='contact_cta');
 
 -- About / Quality: hero + richtext

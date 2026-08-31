@@ -1,0 +1,34 @@
+---
+# cPanel Git™ Version Control deployment for ssjpharma.com
+#
+# One-time setup (in GoDaddy cPanel → "Git Version Control"):
+#   1. Create → Clone a Repository → URL:
+#        https://<TOKEN>@github.com/IQINFOTECH/ssjpharma.com.git
+#      (the repo is PRIVATE, so use a GitHub Personal Access Token in the URL,
+#       or add a Deploy Key — a read-only token is enough).
+#   2. After it clones, this .cpanel.yml is detected automatically.
+#
+# Each deploy after that:
+#   cPanel → Git Version Control → Manage → "Update from Remote" → "Deploy HEAD Commit".
+#   That runs the tasks below: copy the app into the docroot, then migrate + seed.
+#
+# EDIT the two values below to match YOUR hosting account, then commit once:
+#   - DEPLOYPATH : the folder that serves ssjpharma.com (the document root).
+#   - PHP        : the PHP 8.3 CLI binary path on the host.
+# Find them in cPanel: "Domains" shows the document root; "MultiPHP Manager"
+# / "Terminal `which php`" shows the PHP binary (often /usr/local/bin/php or
+# /opt/cpanel/ea-php83/root/usr/bin/php).
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/USERNAME/public_html
+    - export PHP=/usr/local/bin/php
+    # Copy the application into the docroot. Does NOT touch the existing .env
+    # (it is not in the repo) or public/uploads (owner media is preserved — cp
+    # never deletes). The repo ships committed vendor/, so no Composer runs.
+    - /bin/cp -R ./* "$DEPLOYPATH/"
+    - /bin/cp -R ./.htaccess "$DEPLOYPATH/" 2>/dev/null || true
+    # Apply DB schema (idempotent) and safe base settings/templates (INSERT IGNORE —
+    # never overwrites data you already entered in Admin).
+    - cd "$DEPLOYPATH" && $PHP bin/migrate.php
+    - cd "$DEPLOYPATH" && $PHP bin/seed.php

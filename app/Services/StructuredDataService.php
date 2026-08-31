@@ -132,6 +132,33 @@ final class StructuredDataService
         return $out;
     }
 
+    /**
+     * FAQPage schema (AEO). Emitted only from real, owner-entered Q&A pairs — a
+     * question/answer with empty text is skipped; no fabricated FAQs.
+     * @param array<int,array<string,mixed>> $items each ['question'=>..,'answer'=>..]
+     * @return array<string,mixed>
+     */
+    public function faq(array $items): array
+    {
+        $entities = [];
+        foreach ($items as $it) {
+            if (!is_array($it)) { continue; }
+            $q = trim((string) ($it['question'] ?? ''));
+            $a = trim(strip_tags((string) ($it['answer'] ?? '')));
+            if ($q === '' || $a === '') { continue; }
+            $entities[] = [
+                '@type' => 'Question',
+                'name'  => $q,
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $a],
+            ];
+        }
+        return [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'FAQPage',
+            'mainEntity' => $entities,
+        ];
+    }
+
     public function encode(array $schema): string
     {
         // JSON_HEX_TAG prevents a "</script>" sequence in admin-entered values

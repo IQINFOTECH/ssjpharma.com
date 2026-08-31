@@ -94,12 +94,27 @@ final class PageController extends SiteController
 
         $isContact = ($page['template'] ?? 'default') === 'contact';
 
+        // AEO: emit FAQPage JSON-LD from any FAQ section's real Q&A pairs.
+        $extraJsonLd = [];
+        $faqItems = [];
+        foreach ($sections as $s) {
+            if ($s['type'] === 'faq' && !empty($s['data']['items']) && is_array($s['data']['items'])) {
+                $faqItems = array_merge($faqItems, $s['data']['items']);
+            }
+        }
+        if ($faqItems !== []) {
+            $block = $this->schema()->faq($faqItems);
+            if (!empty($block['mainEntity'])) {
+                $extraJsonLd[] = $block;
+            }
+        }
+
         return $this->renderSite('site.page', $seo, [
             'page'       => $page,
             'sections'   => $sections,
             'isContact'  => $isContact,
             'contactForm'=> $isContact ? $this->contactFormContext($page) : null,
-        ], $breadcrumbs);
+        ], $breadcrumbs, 200, $extraJsonLd);
     }
 
     /** @param array<string,mixed> $page @return array<string,mixed> */

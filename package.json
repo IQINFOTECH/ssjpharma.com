@@ -1,0 +1,14 @@
+{
+  "name": "ssjpharma-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local build tooling ONLY (Tailwind CSS). Never runs in production — the compiled public/assets/css/app.css is committed and shipped. Production needs PHP + MySQL + Apache only.",
+  "scripts": {
+    "dev": "tailwindcss -i ./resources/css/tailwind.css -o ./public/assets/css/app.css --watch",
+    "build": "tailwindcss -i ./resources/css/tailwind.css -o ./public/assets/css/app.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "tailwindcss": "^3.4.10"
+  }
+}

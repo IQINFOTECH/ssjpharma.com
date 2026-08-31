@@ -1,0 +1,57 @@
+# =============================================================================
+#  SSJ Pharmaceuticals — ROOT .htaccess  (FALLBACK LAYOUT)
+# -----------------------------------------------------------------------------
+#  Only takes effect when the domain document root CANNOT be moved to /public
+#  and instead points at the project root (e.g. public_html == project root).
+#
+#  It (1) routes all public traffic into /public/index.php, and
+#     (2) hard-denies every sensitive directory and file so application code,
+#         config, database scripts, storage, logs, backups and .env are NOT
+#         publicly accessible. See docs/SECURITY_PLAN.md §14.
+#
+#  When the document root IS /public (preferred), this file sits above the
+#  docroot and is simply ignored by Apache — harmless.
+# =============================================================================
+
+Options -Indexes +FollowSymLinks
+
+# --- 1. Hard-deny sensitive directories --------------------------------------
+# Any direct request to these paths is refused outright (403).
+RedirectMatch 403 (?i)^/(app|bootstrap|config|database|storage|tests|bin|resources|docs|vendor|node_modules)(/.*)?$
+
+# --- 2. Deny sensitive / hidden files anywhere -------------------------------
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(env|ini|log|sql|sqlite|lock|md|dist|sh|bak|old|json|yml|yaml|lock)$">
+    Require all denied
+</FilesMatch>
+
+# Explicitly protect these regardless of extension rules above.
+<Files "composer.json">
+    Require all denied
+</Files>
+<Files "composer.lock">
+    Require all denied
+</Files>
+<Files ".env">
+    Require all denied
+</Files>
+
+# --- 3. Route everything into the /public front controller -------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Do not re-route requests already targeting /public.
+    RewriteCond %{REQUEST_URI} !^/public/
+    # Never route the denied dirs through public (defense in depth with rule 1).
+    RewriteCond %{REQUEST_URI} !^/(app|bootstrap|config|database|storage|tests|bin|resources|docs|vendor|node_modules)(/|$) [NC]
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# --- 4. Security headers -----------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

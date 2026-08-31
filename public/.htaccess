@@ -1,0 +1,53 @@
+# =============================================================================
+#  SSJ Pharmaceuticals — public/ front-controller rules
+#  Active when the domain document root is /public (preferred layout).
+# =============================================================================
+
+# --- Follow symlinks, disable directory listing ------------------------------
+Options -Indexes +FollowSymLinks
+
+# --- Front controller --------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If you deploy in a subfolder, set RewriteBase accordingly.
+    # RewriteBase /
+
+    # Serve existing files/directories directly (assets, uploads).
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Everything else goes to the front controller.
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# --- Block access to hidden/sensitive files ----------------------------------
+<FilesMatch "^\.(env|git|htaccess|htpasswd|user\.ini)">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(env|ini|log|sql|md|lock|json|dist|sh)$">
+    Require all denied
+</FilesMatch>
+# Allow the site manifest/robots-style JSON if ever needed by whitelisting explicitly.
+
+# --- Security headers (belt-and-suspenders; app also sets these) -------------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# --- Far-future caching for versioned static assets --------------------------
+# app.css / app.js carry a ?v=<mtime> query (see asset()), so a deploy busts the
+# cache; long-lived immutable caching is therefore safe. Uploads are user media.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|woff2?|ttf|otf|eot|svg|jpg|jpeg|png|gif|webp|avif|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# --- Do not expose PHP version -----------------------------------------------
+<IfModule mod_php.c>
+    php_flag expose_php off
+</IfModule>

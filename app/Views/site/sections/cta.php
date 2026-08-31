@@ -4,7 +4,7 @@ $d = $section;
 if (empty($d['heading']) && empty($d['button_label'])) { return; }
 $dark = ($d['style'] ?? 'primary') === 'dark';
 ?>
-<section class="py-16 lg:py-24">
+<section class="py-12 lg:py-16">
   <div class="container-x">
     <div class="relative overflow-hidden rounded-3xl <?= $dark ? 'bg-gradient-to-br from-brand-900 to-brand-700' : 'bg-gradient-to-br from-brand-600 to-brand-500' ?> px-8 py-14 text-center text-white sm:px-14">
       <div class="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-500/25 blur-3xl" aria-hidden="true"></div>

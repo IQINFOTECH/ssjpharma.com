@@ -4,7 +4,7 @@ $d = $section;
 $cards = is_array($d['cards'] ?? null) ? $d['cards'] : [];
 if ($cards === [] && empty($d['heading'])) { return; }
 ?>
-<section class="py-14 lg:py-20">
+<section class="py-12 lg:py-16">
   <div class="container-x">
     <?php if (!empty($d['heading']) || !empty($d['subheading'])): ?>
     <div class="mb-10 max-w-2xl">

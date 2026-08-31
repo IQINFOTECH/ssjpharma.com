@@ -4,8 +4,8 @@ $d = $section;
 $items = is_array($d['items'] ?? null) ? $d['items'] : [];
 if ($items === []) { return; }
 ?>
-<section class="py-16 lg:py-24">
-  <div class="container-x max-w-3xl">
+<section class="py-12 lg:py-16">
+  <div class="container-x">
     <?php if (!empty($d['eyebrow'])): ?><span class="eyebrow mb-3"><?= e($d['eyebrow']) ?></span><?php endif; ?>
     <?php if (!empty($d['heading'])): ?><h2 class="mb-8 text-2xl font-semibold sm:text-3xl lg:text-4xl"><?= e($d['heading']) ?></h2><?php endif; ?>
     <div class="divide-y divide-slate-200">

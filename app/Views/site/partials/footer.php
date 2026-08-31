@@ -13,7 +13,7 @@ $phone   = $settings->get('company_phone');
 $waLink  = $whatsappLink ?? '';
 $socials = $settings->socialLinks();
 ?>
-<footer class="mt-24 bg-brand-900 text-slate-300">
+<footer class="mt-0 bg-brand-900 text-slate-300">
   <div class="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
     <!-- Company column -->
     <div>

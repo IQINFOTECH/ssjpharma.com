@@ -5,7 +5,7 @@ $items = is_array($d['items'] ?? null) ? $d['items'] : [];
 if ($items === []) { return; }
 $cols = min(4, max(1, count($items)));
 ?>
-<section class="py-16 lg:py-24">
+<section class="py-12 lg:py-16">
   <div class="container-x">
     <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 to-brand-700 px-8 py-12 sm:px-12 lg:py-16">
       <div class="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-teal-500/20 blur-3xl" aria-hidden="true"></div>

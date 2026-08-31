@@ -19,7 +19,7 @@ $errText = static function (string $k) use ($errors, $errId): string {
 };
 ?>
 <section class="pb-20">
-  <div class="container-x max-w-3xl">
+  <div class="container-x">
     <?php if (!empty($errors['_form'])): ?>
       <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><?= e($errors['_form']) ?></div>
     <?php endif; ?>

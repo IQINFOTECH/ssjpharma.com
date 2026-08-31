@@ -4,7 +4,7 @@ use App\Support\HtmlSanitizer;
 $d = $section;
 ?>
 <section class="py-14 lg:py-20">
-  <div class="container-x max-w-3xl">
+  <div class="container-x">
     <?php if (!empty($d['heading'])): ?>
       <h2 class="mb-6 text-2xl font-semibold sm:text-3xl"><?= e($d['heading']) ?></h2>
     <?php endif; ?>

@@ -15,7 +15,7 @@ if ($cards === [] && empty($d['heading'])) { return; }
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <?php foreach ($cards as $card): if (!is_array($card)) continue; ?>
         <?php $url = trim((string) ($card['url'] ?? '')); $tag = $url !== '' ? 'a' : 'div'; ?>
-        <<?= $tag ?> <?= $url !== '' ? 'href="' . e($url) . '"' : '' ?> class="card block transition hover:shadow-lg">
+        <<?= $tag ?> <?= $url !== '' ? 'href="' . e($url) . '"' : '' ?> class="card <?= $url !== '' ? 'card-lift' : '' ?> block">
           <div class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path d="M5 12l5 5L20 7"/></svg>
           </div>

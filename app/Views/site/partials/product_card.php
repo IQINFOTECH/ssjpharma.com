@@ -5,7 +5,7 @@
  */
 $url = '/products/' . $p['slug'];
 ?>
-<article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-card transition hover:shadow-lg">
+<article class="card-lift group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-card">
   <a href="<?= e($url) ?>" class="flex h-44 items-center justify-center bg-slate-50">
     <?php if (!empty($p['image_url'])): ?>
       <img src="<?= e($p['image_url']) ?>" alt="<?= e($p['name']) ?>" loading="lazy" class="h-full w-full object-contain p-4">

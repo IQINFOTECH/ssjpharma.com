@@ -19,9 +19,9 @@ $url = '/products/' . $p['slug'];
     <?php if (!empty($p['generic_name'])): ?><p class="mt-0.5 text-sm text-slate-500"><?= e($p['generic_name']) ?></p><?php endif; ?>
     <?php if (!empty($p['dosage_name'])): ?><span class="mt-2 inline-block w-fit rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-medium text-brand-700"><?= e($p['dosage_name']) ?></span><?php endif; ?>
     <?php if (!empty($p['short_description'])): ?><p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600"><?= e($p['short_description']) ?></p><?php endif; ?>
-    <div class="mt-auto flex items-center gap-3 pt-4">
-      <a href="<?= e($url) ?>" class="text-sm font-semibold text-brand-600 hover:text-brand-700">View Product →</a>
-      <a href="<?= e($url) ?>#enquire" class="ml-auto text-sm font-medium text-slate-500 hover:text-brand-600">Enquire</a>
+    <div class="mt-auto flex items-center gap-2 pt-4">
+      <a href="<?= e($url) ?>" class="btn btn-ghost px-3.5 py-1.5 text-xs">View</a>
+      <a href="<?= e($url) ?>#enquire" class="btn btn-primary px-3.5 py-1.5 text-xs">Enquire</a>
     </div>
   </div>
 </article>

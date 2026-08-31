@@ -30,8 +30,12 @@ $groupLabels = [
                 <input type="checkbox" name="<?= $name ?>" value="1" class="rounded border-slate-300 text-brand-600" <?= $val === '1' ? 'checked' : '' ?>> Enabled
               </label>
             <?php elseif ($row['type'] === 'media'): ?>
-              <input id="s_<?= e($key) ?>" name="<?= $name ?>" value="<?= e($val) ?>" class="input-admin" placeholder="Media ID">
-              <p class="mt-1 text-xs text-slate-400">Media ID from the <a href="/admin/media" class="text-brand-600">library</a>.</p>
+              <?php $mprev = app(App\Services\SettingsService::class)->mediaUrl($key); ?>
+              <input id="s_<?= e($key) ?>" name="<?= $name ?>" value="<?= e($val) ?>" class="input-admin" placeholder="Media ID or /uploads/… image path">
+              <p class="mt-1 text-xs text-slate-400">A <strong>Media ID</strong> from the <a href="/admin/media" class="text-brand-600">library</a>, <em>or paste the image URL / path</em>.</p>
+              <?php if ($mprev !== ''): ?>
+                <img src="<?= e($mprev) ?>" alt="Current <?= e($row['label'] ?? $key) ?>" class="mt-2 h-12 w-auto rounded-lg border border-slate-200 bg-white p-1">
+              <?php endif; ?>
             <?php else: ?>
               <input id="s_<?= e($key) ?>" type="<?= $row['type'] === 'email' ? 'email' : ($row['type'] === 'url' ? 'url' : 'text') ?>" name="<?= $name ?>" value="<?= e($val) ?>" class="input-admin">
             <?php endif; ?>

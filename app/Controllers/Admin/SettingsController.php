@@ -62,7 +62,8 @@ final class SettingsController extends AdminController
             'int'   => (string) (int) $value,
             'email' => mb_substr($value, 0, 190),
             'url'   => mb_substr($value, 0, 500),
-            'media' => (string) (int) $value,
+            // Media: keep a numeric library id as-is, OR preserve a pasted image URL/path.
+            'media' => is_numeric($value) ? (string) (int) $value : mb_substr($value, 0, 500),
             'text'  => mb_substr($value, 0, 5000),
             default => mb_substr($value, 0, 1000),
         };

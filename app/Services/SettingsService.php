@@ -40,13 +40,22 @@ final class SettingsService
     }
 
     /** Resolve a media-id setting to a public URL, or '' if unset/missing. */
+    /**
+     * Resolve a media setting to a URL. Accepts EITHER a numeric media-library id
+     * OR a directly pasted image URL / path (e.g. /uploads/2026/08/logo.png), so
+     * the owner can just copy the image path from the library.
+     */
     public function mediaUrl(string $key): string
     {
-        $id = (int) $this->get($key);
-        if ($id <= 0) {
+        $val = trim($this->get($key));
+        if ($val === '' || $val === '0') {
             return '';
         }
-        $row = $this->media->findActive($id);
+        if (!ctype_digit($val)) {
+            // A pasted path/URL — accept same-origin paths and http(s) URLs only.
+            return (str_starts_with($val, '/') || str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) ? $val : '';
+        }
+        $row = $this->media->findActive((int) $val);
         return $row['url_path'] ?? '';
     }
 

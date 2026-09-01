@@ -40,11 +40,6 @@ SELECT m.id, 'Company', NULL, 10
 FROM `menus` m WHERE m.`key`='footer'
 AND NOT EXISTS (SELECT 1 FROM `menu_items` mi WHERE mi.menu_id=m.id AND mi.label='Company');
 
-INSERT INTO `menu_items` (`menu_id`,`label`,`url`,`sort_order`)
-SELECT m.id, 'Explore', NULL, 20
-FROM `menus` m WHERE m.`key`='footer'
-AND NOT EXISTS (SELECT 1 FROM `menu_items` mi WHERE mi.menu_id=m.id AND mi.label='Explore');
-
 -- Company children
 INSERT INTO `menu_items` (`menu_id`,`parent_id`,`label`,`page_id`,`sort_order`)
 SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Company'),
@@ -58,15 +53,14 @@ SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Company'
 FROM `menus` m WHERE m.`key`='footer'
 AND NOT EXISTS (SELECT 1 FROM `menu_items` mi WHERE mi.menu_id=m.id AND mi.label='Quality');
 
--- Explore children
 INSERT INTO `menu_items` (`menu_id`,`parent_id`,`label`,`page_id`,`sort_order`)
-SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Explore'),
-       'Become a Distributor', (SELECT id FROM `pages` WHERE `slug`='become-a-distributor'), 10
+SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Company'),
+       'Become a Distributor', (SELECT id FROM `pages` WHERE `slug`='become-a-distributor'), 30
 FROM `menus` m WHERE m.`key`='footer'
 AND NOT EXISTS (SELECT 1 FROM `menu_items` mi WHERE mi.menu_id=m.id AND mi.label='Become a Distributor');
 
 INSERT INTO `menu_items` (`menu_id`,`parent_id`,`label`,`page_id`,`sort_order`)
-SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Explore'),
-       'Contact Us', (SELECT id FROM `pages` WHERE `slug`='contact-us'), 20
+SELECT m.id, (SELECT id FROM `menu_items` WHERE menu_id=m.id AND label='Company'),
+       'Contact Us', (SELECT id FROM `pages` WHERE `slug`='contact-us'), 40
 FROM `menus` m WHERE m.`key`='footer'
 AND NOT EXISTS (SELECT 1 FROM `menu_items` mi WHERE mi.menu_id=m.id AND mi.label='Contact Us');

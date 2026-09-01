@@ -26,8 +26,8 @@ $socials = $settings->socialLinks();
       <?php endif; ?>
     </div>
 
-    <!-- Menu columns from CMS -->
-    <?php foreach ($footerMenu as $column): ?>
+    <!-- Menu columns from CMS (columns without any links are skipped) -->
+    <?php foreach ($footerMenu as $column): if (empty($column['children'])) { continue; } ?>
       <div>
         <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white"><?= e($column['label']) ?></h3>
         <ul class="space-y-2.5 text-sm">

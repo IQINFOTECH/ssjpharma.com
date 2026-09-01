@@ -40,7 +40,7 @@ $homeId = (int) $home['id'];
 // The Home scaffold — hero, capabilities, FAQ, closing CTA.
 $sections = [
     [10, 'hero', [
-        'style' => 'collage',
+        // Editorial hero (Concept 1). Set 'style' => 'collage' to switch back.
         'eyebrow' => 'Pharmaceutical Manufacturing',
         'heading' => 'Quality medicine, manufactured to standard.',
         'subheading' => 'SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners.',

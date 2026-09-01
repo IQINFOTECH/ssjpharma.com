@@ -24,7 +24,34 @@ $errText = static function (string $k) use ($errors, $errId): string {
       <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><?= e($errors['_form']) ?></div>
     <?php endif; ?>
 
-    <form method="post" action="/contact" class="js-contact-form card space-y-5" novalidate>
+    <div class="grid gap-10 lg:grid-cols-[2fr_3fr]">
+    <!-- Editorial info rail (Concept 1): company contact facts from Settings. -->
+    <aside class="lg:border-r lg:border-slate-200 lg:pr-10">
+      <?php $addr = $settings->fullAddress(); if ($addr !== ''): ?>
+      <div class="mb-5">
+        <p class="field-label mb-1">Registered office</p>
+        <p class="text-sm leading-relaxed text-slate-600"><?= nl2br(e($addr)) ?></p>
+      </div>
+      <?php endif; ?>
+      <?php $phone = $settings->get('company_phone'); if ($phone !== ''): ?>
+      <div class="mb-5">
+        <p class="field-label mb-1">Phone</p>
+        <a href="tel:<?= e(preg_replace('/[^+\d]/', '', $phone)) ?>" class="text-sm font-medium text-brand-600 hover:text-brand-700"><?= e($phone) ?></a>
+      </div>
+      <?php endif; ?>
+      <?php $email = $settings->get('company_email'); if ($email !== ''): ?>
+      <div class="mb-5">
+        <p class="field-label mb-1">Email</p>
+        <a href="mailto:<?= e($email) ?>" class="text-sm font-medium text-brand-600 hover:text-brand-700"><?= e($email) ?></a>
+      </div>
+      <?php endif; ?>
+      <?php if (!empty($whatsappLink)): ?>
+      <a href="<?= e($whatsappLink) ?>" target="_blank" rel="noopener" class="btn btn-whatsapp" data-wa-context="contact">Chat on WhatsApp</a>
+      <?php endif; ?>
+      <p class="mt-6 border-t border-slate-200 pt-4 text-xs text-slate-400">We respond to business enquiries within one business day.</p>
+    </aside>
+
+    <form method="post" action="/contact" class="js-contact-form space-y-5" novalidate>
       <?= csrf_field() ?>
       <input type="hidden" name="form_key" value="<?= e((string) $form['form_key']) ?>">
       <?php if (!empty($form['product'])): ?>
@@ -132,5 +159,6 @@ $errText = static function (string $k) use ($errors, $errId): string {
         <p class="text-xs text-slate-400">Your details are used only to respond to your enquiry.</p>
       </div>
     </form>
+    </div>
   </div>
 </section>

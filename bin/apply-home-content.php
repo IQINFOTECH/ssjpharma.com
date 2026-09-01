@@ -40,13 +40,24 @@ $homeId = (int) $home['id'];
 // The Home scaffold — hero, capabilities, FAQ, closing CTA.
 $sections = [
     [10, 'hero', [
-        'style' => 'collage',
-        'eyebrow' => 'Pharmaceutical Manufacturing',
-        'heading' => 'Quality medicine, manufactured to standard.',
-        'subheading' => 'SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners.',
-        'primary_label' => 'Become a distributor', 'primary_url' => '/become-a-distributor',
-        'secondary_label' => 'Explore products', 'secondary_url' => '/products',
-        'image_id' => null, 'align' => 'left',
+        // Premium corporate hero. Marketing phrases below are DESIGN PLACEHOLDERS —
+        // all CMS-editable; the owner verifies or edits them (no pharma claims).
+        'style' => 'premium',
+        'eyebrow' => 'Trusted by healthcare. Driven by quality.',
+        'heading' => 'Quality today,',
+        'heading_highlight' => 'healthier tomorrow',
+        'subheading' => 'Delivering high-quality pharmaceutical products with integrity, innovation and care.',
+        'primary_label' => 'Explore our products', 'primary_url' => '/products',
+        'secondary_label' => 'Send an enquiry', 'secondary_url' => '/contact-us',
+        'image_id' => null, 'image_alt' => 'Pharmaceutical laboratory',
+        'features' => [
+            ['label' => 'Quality Assured'],
+            ['label' => 'Wide Range of Products'],
+            ['label' => 'Trusted Partner'],
+            ['label' => 'Pan India Presence'],
+        ],
+        'badge_text' => 'Safe • Effective • Reliable',
+        'align' => 'left',
     ]],
     [20, 'cards', [
         'heading' => 'Our manufacturing solutions',

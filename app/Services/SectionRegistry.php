@@ -21,14 +21,21 @@ final class SectionRegistry
             'hero' => [
                 'label'  => 'Hero',
                 'fields' => [
+                    'style'          => ['type' => 'select',   'label' => 'Style', 'options' => ['standard', 'premium', 'collage']],
                     'eyebrow'        => ['type' => 'text',     'label' => 'Eyebrow'],
                     'heading'        => ['type' => 'text',     'label' => 'Heading'],
+                    'heading_highlight' => ['type' => 'text',  'label' => 'Heading highlight (premium: second line, shown in blue)'],
                     'subheading'     => ['type' => 'textarea', 'label' => 'Subheading'],
                     'primary_label'  => ['type' => 'text',     'label' => 'Primary button label'],
                     'primary_url'    => ['type' => 'text',     'label' => 'Primary button URL'],
                     'secondary_label'=> ['type' => 'text',     'label' => 'Secondary button label'],
                     'secondary_url'  => ['type' => 'text',     'label' => 'Secondary button URL'],
                     'image_id'       => ['type' => 'media',    'label' => 'Image'],
+                    'image_alt'      => ['type' => 'text',     'label' => 'Image alt text (accessibility)'],
+                    'features'       => ['type' => 'repeater', 'label' => 'Trust features (premium style; leave empty to hide)', 'subfields' => [
+                        'label' => 'Label',
+                    ]],
+                    'badge_text'     => ['type' => 'text',     'label' => 'Floating badge text (premium style; empty = hidden)'],
                     'align'          => ['type' => 'select',   'label' => 'Alignment', 'options' => ['left', 'center']],
                 ],
             ],

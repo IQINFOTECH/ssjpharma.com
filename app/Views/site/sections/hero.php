@@ -56,6 +56,95 @@ $hasImg = $img !== '' && $align !== 'center';
     </div>
   </div>
 </section>
+<?php elseif ($style === 'premium'):
+    // Premium corporate hero — 55/45 split, trust features, curved navy/red frame,
+    // floating badge. All copy is CMS-driven; empty fields hide their element.
+    $features = [];
+    foreach ((array) ($d['features'] ?? []) as $f) {
+        if (is_array($f) && trim((string) ($f['label'] ?? '')) !== '') { $features[] = trim((string) $f['label']); }
+    }
+    $badge = trim((string) ($d['badge_text'] ?? ''));
+    $hl = trim((string) ($d['heading_highlight'] ?? ''));
+    $imgAlt = trim((string) ($d['image_alt'] ?? ''));
+    // Minimal line icons cycled across features: shield, grid, people, map-pin.
+    $icons = [
+        '<path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+        '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
+        '<circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.6 5.5-4.6s4.9 1.6 5.5 4.6M15.5 5.4a3.2 3.2 0 0 1 0 5.2M17.5 14.6c1.6.7 2.7 2 3 4.4"/>',
+        '<path d="M12 21s-6.5-5.4-6.5-10.3A6.5 6.5 0 0 1 12 4a6.5 6.5 0 0 1 6.5 6.7C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.6" r="2.3"/>',
+    ];
+?>
+<section class="relative overflow-hidden bg-white">
+  <!-- Subtle scientific backdrop: soft blue wash + faint molecular lattice. -->
+  <div class="hero-premium-wash pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <svg class="pointer-events-none absolute -right-10 top-8 h-64 w-64 text-[#0757B8] opacity-[0.06]" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M60 40l40-22 40 22v46l-40 22-40-22zM100 108v46M100 154l-40 22M100 154l40 22M140 86l40 22"/>
+    <circle cx="60" cy="40" r="5" fill="currentColor"/><circle cx="140" cy="40" r="5" fill="currentColor"/><circle cx="100" cy="108" r="5" fill="currentColor"/><circle cx="100" cy="154" r="5" fill="currentColor"/><circle cx="180" cy="108" r="5" fill="currentColor"/>
+  </svg>
+
+  <div class="container-x relative pt-10 pb-10 lg:pt-14 lg:pb-14">
+    <div class="grid items-center gap-12 lg:grid-cols-[11fr_9fr] lg:gap-14">
+      <!-- Content -->
+      <div class="animate-rise">
+        <?php if (!empty($d['eyebrow'])): ?>
+        <p class="mb-4 flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.18em] text-[#062B63]"><span class="h-0.5 w-7 shrink-0 rounded bg-[#E31B23]" aria-hidden="true"></span><?= e($d['eyebrow']) ?></p>
+        <?php endif; ?>
+        <h1 class="font-sans text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-[#062B63] sm:text-5xl xl:text-[3.4rem]">
+          <?= e($d['heading'] ?? '') ?>
+          <?php if ($hl !== ''): ?><span class="block text-[#0757B8]"><?= e($hl) ?></span><?php endif; ?>
+        </h1>
+        <?php if (!empty($d['subheading'])): ?>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-slate-600"><?= nl2br(e($d['subheading'])) ?></p>
+        <?php endif; ?>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <?php if (!empty($d['primary_label'])): ?>
+          <a href="<?= e($d['primary_url'] ?? '#') ?>" class="btn min-h-[48px] bg-[#E31B23] px-7 text-white shadow-[0_12px_24px_-14px_rgba(227,27,35,.8)] hover:-translate-y-px hover:bg-[#c4141b] focus-visible:ring-[#E31B23]">
+            <?= e($d['primary_label']) ?>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <?php endif; ?>
+          <?php if (!empty($d['secondary_label'])): ?>
+          <a href="<?= e($d['secondary_url'] ?? '#') ?>" class="btn min-h-[48px] border-2 border-[#0757B8] bg-white px-7 text-[#062B63] hover:bg-[#0757B8]/5 focus-visible:ring-[#0757B8]">
+            <?= e($d['secondary_label']) ?>
+            <svg class="h-4 w-4 text-[#0757B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <?php endif; ?>
+        </div>
+
+        <?php if ($features !== []): ?>
+        <ul class="mt-9 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-slate-200 pt-6 sm:flex sm:flex-wrap sm:gap-x-8">
+          <?php foreach ($features as $i => $label): ?>
+          <li class="flex items-center gap-2.5">
+            <svg class="h-5 w-5 shrink-0 text-[#0757B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?= $icons[$i % count($icons)] ?></svg>
+            <span class="text-sm font-medium text-[#062B63]"><?= e($label) ?></span>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+      </div>
+
+      <!-- Visual: curved navy/red frame + lab imagery + floating badge -->
+      <div class="relative animate-rise-2 lg:justify-self-end lg:w-full">
+        <div class="pointer-events-none absolute inset-0 translate-x-4 translate-y-5 rounded-tl-[5.5rem] rounded-br-[5.5rem] rounded-tr-3xl rounded-bl-3xl bg-[#062B63]" aria-hidden="true"></div>
+        <svg class="pointer-events-none absolute -left-5 -bottom-6 h-40 w-40 text-[#E31B23]" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+          <path d="M8 152C8 72 72 8 152 8" stroke="currentColor" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+        </svg>
+        <div class="relative overflow-hidden rounded-tl-[5.5rem] rounded-br-[5.5rem] rounded-tr-3xl rounded-bl-3xl border-[6px] border-white shadow-[0_30px_60px_-30px_rgba(6,43,99,.55)]">
+          <img src="<?= e($img !== '' ? $img : asset('hero-lab.svg')) ?>" alt="<?= e($imgAlt !== '' ? $imgAlt : 'Pharmaceutical laboratory') ?>" width="640" height="560" fetchpriority="high" class="h-auto w-full object-cover">
+        </div>
+        <?php if ($badge !== ''): ?>
+        <div class="absolute -bottom-4 left-8 animate-float">
+          <span class="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-[#062B63] py-2.5 pl-4 pr-5 text-xs font-semibold uppercase tracking-wider text-white shadow-[0_14px_28px_-14px_rgba(6,43,99,.8)]">
+            <svg class="h-4 w-4 text-[#7cc0ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <?= e($badge) ?>
+          </span>
+        </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</section>
 <?php else: // Standard hero ?>
 <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-brand-50/40 to-white">
   <div class="pointer-events-none absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full bg-teal-500/10 blur-3xl" aria-hidden="true"></div>

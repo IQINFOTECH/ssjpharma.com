@@ -24,6 +24,14 @@
      yield one consistent gap everywhere (2× = 64px / 80px lg). */
   .section-pad { @apply py-8 lg:py-10; }
 
+  /* Premium hero backdrop wash. Lives here because CSP style-src 'self' blocks
+     inline style attributes (no unsafe-inline). */
+  .hero-premium-wash {
+    background:
+      radial-gradient(56rem 30rem at 85% -10%, rgba(7, 87, 184, .07), transparent 60%),
+      radial-gradient(40rem 24rem at -10% 100%, rgba(6, 43, 99, .05), transparent 60%);
+  }
+
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2; }
   .btn-primary { @apply bg-brand-500 text-white shadow-[0_8px_20px_-10px_rgba(37,117,186,.75)] hover:bg-brand-600 hover:-translate-y-px focus-visible:ring-brand-500; }
   .btn-dark { @apply bg-brand-900 text-white hover:bg-brand-800 hover:-translate-y-px focus-visible:ring-brand-900; }
@@ -58,12 +66,17 @@
 /* Motion utilities (used by the collage hero). Pure CSS, no libraries. */
 @keyframes ssjFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 @keyframes ssjMarquee { to { transform: translateX(-50%); } }
+@keyframes ssjRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @layer utilities {
   .animate-float   { animation: ssjFloat 6s ease-in-out infinite; }
   .animate-float-2 { animation: ssjFloat 7.5s ease-in-out .5s infinite; }
   .animate-float-3 { animation: ssjFloat 6.8s ease-in-out .3s infinite; }
   .animate-marquee { animation: ssjMarquee 26s linear infinite; }
+  /* One-shot entrance reveals (premium hero). */
+  .animate-rise    { animation: ssjRise .65s ease-out both; }
+  .animate-rise-2  { animation: ssjRise .65s ease-out .18s both; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .animate-float, .animate-float-2, .animate-float-3, .animate-marquee { animation: none; }
+  .animate-float, .animate-float-2, .animate-float-3, .animate-marquee,
+  .animate-rise, .animate-rise-2 { animation: none; }
 }

@@ -10,6 +10,7 @@ INSERT IGNORE INTO `settings` (`key`,`value`,`type`,`group`,`label`,`sort_order`
   -- Registered address (owner-provided; editable in Admin → Settings). Granular
   -- fields feed a precise Organization PostalAddress for GEO / local presence.
   ('company_address',     'Sewla Kalan, Shimla Bypass Road, Shiv Lok Colony, Majra', 'text', 'company', 'Address (street)', 40),
+  ('company_tagline',     'Quality • Integrity • Care', 'string', 'company', 'Tagline (footer; bullets render red)', 35),
   ('company_address2',    '', 'text', 'company', 'Corporate office address (optional; shown on Contact)', 41),
   ('company_hours',       '', 'text', 'company', 'Business hours (optional; shown on Contact)', 42),
   ('company_city',        'Dehradun',                'string', 'company', 'City',                41),

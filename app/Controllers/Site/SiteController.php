@@ -45,12 +45,23 @@ abstract class SiteController extends Controller
             $jsonLd[] = $this->schema()->encode($block);
         }
 
+        // Footer legal links — rendered ONLY when those pages actually exist,
+        // so the footer never links to a 404.
+        $pages = $this->container->get(\App\Repositories\PageRepository::class);
+        $legalLinks = [];
+        foreach (['privacy-policy' => 'Privacy Policy', 'terms-and-conditions' => 'Terms & Conditions'] as $slug => $label) {
+            if ($pages->findPublishedBySlug($slug) !== null) {
+                $legalLinks['/' . $slug] = $label;
+            }
+        }
+
         return [
             'seo'            => $seo,
             'settings'       => $settings,
             'headerMenu'     => $this->menus()->tree('header'),
             'mobileMenu'     => $this->menus()->tree('mobile') ?: $this->menus()->tree('header'),
             'footerMenu'     => $this->menus()->tree('footer'),
+            'legalLinks'     => $legalLinks,
             'whatsappLink'   => $this->whatsapp()->link(),
             'gaId'           => $settings->gaId(),
             'jsonLd'         => $jsonLd,

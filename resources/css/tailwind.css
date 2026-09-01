@@ -24,12 +24,23 @@
      yield one consistent gap everywhere (2× = 64px / 80px lg). */
   .section-pad { @apply py-8 lg:py-10; }
 
-  /* Premium hero backdrop wash. Lives here because CSP style-src 'self' blocks
-     inline style attributes (no unsafe-inline). */
+  /* Premium hero backdrop + shape language. Lives here because CSP style-src
+     'self' blocks inline style attributes (no unsafe-inline). */
   .hero-premium-wash {
     background:
       radial-gradient(56rem 30rem at 85% -10%, rgba(7, 87, 184, .07), transparent 60%),
       radial-gradient(40rem 24rem at -10% 100%, rgba(6, 43, 99, .05), transparent 60%);
+  }
+  /* Large smooth left-edge arc on the photo panel (and its band layer). */
+  .hero-premium-curve { border-radius: 32% 0 0 32% / 52% 0 0 52%; }
+  /* Red-into-blue arc band that traces the curve (sits behind the photo). */
+  .hero-premium-band { background: linear-gradient(180deg, #E31B23 0 52%, #0757B8 52% 78%, #062B63 78% 100%); }
+  /* Fine dotted detail, bottom-left of the hero. */
+  .hero-premium-dots {
+    background-image: radial-gradient(rgba(6, 43, 99, .22) 1.5px, transparent 1.6px);
+    background-size: 14px 14px;
+    -webkit-mask-image: linear-gradient(135deg, #000 30%, transparent 85%);
+    mask-image: linear-gradient(135deg, #000 30%, transparent 85%);
   }
 
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2; }

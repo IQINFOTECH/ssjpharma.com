@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Customer support and communication illustration">
+  <defs>
+    <linearGradient id="hcBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#041d43"/><stop offset=".55" stop-color="#062B63"/><stop offset="1" stop-color="#0757B8"/>
+    </linearGradient>
+    <radialGradient id="hcGlow" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#7cc0ff" stop-opacity=".5"/><stop offset="1" stop-color="#7cc0ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hcBlur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="hcBlurSm" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+
+  <rect width="640" height="560" fill="url(#hcBg)"/>
+  <!-- depth: soft bokeh + backlight -->
+  <ellipse cx="450" cy="170" rx="240" ry="190" fill="url(#hcGlow)"/>
+  <circle cx="130" cy="120" r="46" fill="#5aa9f2" opacity=".14" filter="url(#hcBlur)"/>
+  <circle cx="560" cy="360" r="60" fill="#7cc0ff" opacity=".12" filter="url(#hcBlur)"/>
+  <circle cx="250" cy="66" r="26" fill="#9ed1ff" opacity=".16" filter="url(#hcBlurSm)"/>
+  <!-- faint connection lattice -->
+  <g stroke="#9ec6f5" stroke-width="1" opacity=".16" fill="none">
+    <path d="M60 470l70-40 70 40M130 430v-60l60-34"/>
+    <circle cx="60" cy="470" r="4" fill="#9ec6f5"/><circle cx="130" cy="430" r="4" fill="#9ec6f5"/><circle cx="200" cy="470" r="4" fill="#9ec6f5"/><circle cx="130" cy="370" r="4" fill="#9ec6f5"/><circle cx="190" cy="336" r="4" fill="#9ec6f5"/>
+  </g>
+  <!-- globe arcs, softly out of focus (background) -->
+  <g filter="url(#hcBlurSm)" opacity=".55" stroke="#cfe4fb" stroke-width="4" fill="none">
+    <circle cx="500" cy="150" r="70"/>
+    <path d="M430 150h140M500 80a110 110 0 0 1 0 140M500 80a110 110 0 0 0 0 140" transform="scale(.64) translate(281 84)"/>
+  </g>
+
+  <!-- headset (main element) -->
+  <g fill="none" stroke="#e6f1fd" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M180 330v-40a110 110 0 0 1 220 0v40"/>
+    <rect x="164" y="318" width="44" height="76" rx="20" fill="url(#hcGlow)"/>
+    <rect x="372" y="318" width="44" height="76" rx="20" fill="url(#hcGlow)"/>
+    <path d="M394 394v22a44 44 0 0 1-44 44h-30"/>
+    <circle cx="308" cy="460" r="11" fill="#e6f1fd" stroke="none"/>
+  </g>
+  <path d="M186 296a104 104 0 0 1 96-96" stroke="#ffffff" stroke-opacity=".45" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- chat bubbles -->
+  <g>
+    <path d="M448 258h116a14 14 0 0 1 14 14v62a14 14 0 0 1-14 14h-78l-26 24v-24h-12a14 14 0 0 1-14-14v-62a14 14 0 0 1 14-14z" fill="rgba(255,255,255,.12)" stroke="#e6f1fd" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M462 288h88M462 310h60" stroke="#cfe4fb" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="578" cy="252" r="10" fill="#E31B23"/>
+  </g>
+  <g transform="translate(56 190)">
+    <path d="M14 0h96a14 14 0 0 1 14 14v46a14 14 0 0 1-14 14H44l-24 22V74H14A14 14 0 0 1 0 60V14A14 14 0 0 1 14 0z" fill="rgba(255,255,255,.1)" stroke="#e6f1fd" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="38" cy="37" r="5" fill="#cfe4fb"/><circle cx="62" cy="37" r="5" fill="#cfe4fb"/><circle cx="86" cy="37" r="5" fill="#cfe4fb"/>
+  </g>
+
+  <!-- envelope -->
+  <g transform="translate(78 452)" stroke="#e6f1fd" stroke-width="4" fill="rgba(255,255,255,.1)" stroke-linejoin="round">
+    <rect x="0" y="0" width="118" height="76" rx="10"/>
+    <path d="m4 8 55 42 55-42" fill="none"/>
+  </g>
+
+  <!-- location pin -->
+  <g transform="translate(470 420)">
+    <path d="M52 0a52 52 0 0 1 52 53c0 39-52 87-52 87S0 92 0 53A52 52 0 0 1 52 0z" fill="rgba(255,255,255,.12)" stroke="#e6f1fd" stroke-width="5" stroke-linejoin="round"/>
+    <circle cx="52" cy="52" r="18" fill="#E31B23"/>
+    <ellipse cx="52" cy="146" rx="34" ry="7" fill="#041d43" opacity=".6"/>
+  </g>
+</svg>

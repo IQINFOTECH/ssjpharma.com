@@ -46,7 +46,9 @@ $new = [
     'style' => 'premium', 'size' => 'small',
     'heading' => 'Contact', 'heading_highlight' => 'Us',
     'subheading' => 'We are here to help and answer any question you may have. We look forward to hearing from you.',
-    'image_id' => null, 'image_alt' => 'Pharmaceutical laboratory',
+    // Contact-themed illustration (headset/chat/mail/pin); the owner's uploaded
+    // Media image replaces it via the hero Image field.
+    'image_id' => '/assets/hero-contact.svg', 'image_alt' => 'Customer support and communication',
     'features' => [
         ['label' => 'Reliable Support'],
         ['label' => 'Expert Guidance'],

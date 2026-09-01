@@ -46,7 +46,7 @@ FROM `pages` WHERE `slug`='quality' AND (SELECT COUNT(*) FROM `page_sections` s 
 
 -- Contact / Distributor: small hero above the injected form
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"Contact","heading_highlight":"Us","subheading":"We are here to help and answer any question you may have. We look forward to hearing from you.","image_id":null,"image_alt":"Pharmaceutical laboratory","features":[{"label":"Reliable Support"},{"label":"Expert Guidance"},{"label":"Long-Term Partnerships"},{"label":"Pan India Presence"}],"align":"left"}'
+SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"Contact","heading_highlight":"Us","subheading":"We are here to help and answer any question you may have. We look forward to hearing from you.","image_id":"/assets/hero-contact.svg","image_alt":"Customer support and communication","features":[{"label":"Reliable Support"},{"label":"Expert Guidance"},{"label":"Long-Term Partnerships"},{"label":"Pan India Presence"}],"align":"left"}'
 FROM `pages` WHERE `slug`='contact-us' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)

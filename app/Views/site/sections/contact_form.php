@@ -40,7 +40,7 @@ $typeOptions = [
     'partnership'          => 'Partnership Enquiry',
 ];
 ?>
-<section class="section-pad pt-0">
+<section class="section-pad">
   <div class="container-x">
     <?php if (!empty($errors['_form'])): ?>
       <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><?= e($errors['_form']) ?></div>

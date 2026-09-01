@@ -10,7 +10,7 @@ $hasImg = $img !== '' && $align !== 'center';
 <?php if ($style === 'collage'): // Concept F — floating photo collage + services marquee (logo blue/red) ?>
 <section class="relative overflow-hidden bg-gradient-to-b from-white to-brand-50/70">
   <div class="pointer-events-none absolute -right-24 -top-24 h-[26rem] w-[26rem] rounded-full bg-[#2b4a9e]/10 blur-3xl" aria-hidden="true"></div>
-  <div class="container-x relative py-14 lg:py-20">
+  <div class="container-x relative pt-12 pb-8 lg:pt-16 lg:pb-10">
     <div class="grid items-center gap-10 lg:grid-cols-2">
       <div class="max-w-2xl">
         <?php if (!empty($d['eyebrow'])): ?><span class="eyebrow mb-4 !text-[#d81f26]"><?= e($d['eyebrow']) ?></span><?php endif; ?>
@@ -60,7 +60,7 @@ $hasImg = $img !== '' && $align !== 'center';
 <section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-brand-50/40 to-white">
   <div class="pointer-events-none absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full bg-teal-500/10 blur-3xl" aria-hidden="true"></div>
   <div class="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-500/10 blur-3xl" aria-hidden="true"></div>
-  <div class="container-x relative <?= $small ? 'py-10 lg:py-14' : 'py-16 lg:py-20' ?>">
+  <div class="container-x relative <?= $small ? 'pt-10 pb-8 lg:pt-12 lg:pb-10' : 'pt-12 pb-8 lg:pt-16 lg:pb-10' ?>">
     <div class="grid items-center gap-12 <?= $hasImg ? 'lg:grid-cols-2' : '' ?>">
       <div class="<?= $align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-2xl' ?>">
         <?php if (!empty($d['eyebrow'])): ?><span class="eyebrow mb-4"><?= e($d['eyebrow']) ?></span><?php endif; ?>

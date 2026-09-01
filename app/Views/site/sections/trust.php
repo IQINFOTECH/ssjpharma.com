@@ -8,7 +8,7 @@ $items = array_values(array_filter(
 ));
 if ($items === []) { return; }
 ?>
-<section class="container-x py-6">
+<section class="container-x section-pad">
   <?php if (!empty($d['heading'])): ?><span class="eyebrow mb-3"><?= e($d['heading']) ?></span><?php endif; ?>
   <div class="flex flex-wrap items-stretch divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-card sm:divide-x sm:divide-y-0">
     <?php foreach ($items as $it): ?>

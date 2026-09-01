@@ -6,7 +6,7 @@
  */
 $d = $section;
 ?>
-<section class="py-14 lg:py-20">
+<section class="section-pad">
   <div class="container-x">
     <?php if (!empty($d['heading']) || !empty($d['subheading'])): ?>
     <div class="mb-8 max-w-2xl">

@@ -4,7 +4,7 @@ $d = $section;
 $items = is_array($d['items'] ?? null) ? $d['items'] : [];
 if ($items === []) { return; }
 ?>
-<section class="bg-brand-50/50 py-14 lg:py-20">
+<section class="bg-brand-50/50 section-pad">
   <div class="container-x">
     <?php if (!empty($d['heading'])): ?><h2 class="mb-10 text-2xl font-semibold sm:text-3xl"><?= e($d['heading']) ?></h2><?php endif; ?>
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

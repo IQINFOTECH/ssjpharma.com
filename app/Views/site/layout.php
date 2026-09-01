@@ -71,7 +71,7 @@ $ogImage = $seo['og_image'] ?? '';
 
     <?php include __DIR__ . '/partials/header.php'; ?>
 
-    <main id="main" class="flex-1">
+    <main id="main" class="flex-1 pb-8 lg:pb-10">
         <?= $this->section('content') ?>
     </main>
 

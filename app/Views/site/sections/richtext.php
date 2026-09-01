@@ -3,7 +3,7 @@
 use App\Support\HtmlSanitizer;
 $d = $section;
 ?>
-<section class="py-14 lg:py-20">
+<section class="section-pad">
   <div class="container-x">
     <?php if (!empty($d['heading'])): ?>
       <h2 class="mb-6 text-2xl font-semibold sm:text-3xl"><?= e($d['heading']) ?></h2>

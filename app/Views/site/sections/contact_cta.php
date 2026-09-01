@@ -3,7 +3,7 @@
 $d = $section;
 if (empty($d['heading']) && empty($d['button_label'])) { return; }
 ?>
-<section class="py-12 lg:py-16">
+<section class="section-pad">
   <div class="container-x">
     <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 to-brand-600 px-8 py-14 text-center sm:px-14">
       <div class="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-500/25 blur-3xl" aria-hidden="true"></div>

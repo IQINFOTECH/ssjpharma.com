@@ -46,7 +46,7 @@ $typeOptions = [
       <div class="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"><?= e($errors['_form']) ?></div>
     <?php endif; ?>
 
-    <div class="grid items-start gap-7 lg:grid-cols-[3fr_2fr]">
+    <div class="grid gap-7 lg:grid-cols-[3fr_2fr]">
       <!-- ============ Get in Touch (form card) ============ -->
       <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
         <div class="mb-6 flex items-start gap-4">
@@ -175,12 +175,14 @@ $typeOptions = [
       </div>
 
       <!-- ============ Contact Information card ============ -->
-      <aside class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+      <!-- Stretches to the form's height; rows spread evenly so the column never
+           shows dead space below the card. -->
+      <aside class="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
         <h2 class="font-sans text-xl font-extrabold text-[#0b1f45]">Contact Information</h2>
         <p class="mt-1 text-sm text-slate-500">We are here to help you with your business and product enquiries.</p>
-        <ul class="mt-5 divide-y divide-slate-100">
+        <ul class="mt-4 flex flex-1 flex-col divide-y divide-slate-100">
           <?php if ($phone !== ''): ?>
-          <li class="flex items-start gap-4 py-4">
+          <li class="flex flex-1 items-center gap-4 py-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0757B8]/10 text-[#0757B8]">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.97.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.7 2.05z"/></svg>
             </span>
@@ -191,7 +193,7 @@ $typeOptions = [
           </li>
           <?php endif; ?>
           <?php if ($email !== ''): ?>
-          <li class="flex items-start gap-4 py-4">
+          <li class="flex flex-1 items-center gap-4 py-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0757B8]/10 text-[#0757B8]">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
             </span>
@@ -202,7 +204,7 @@ $typeOptions = [
           </li>
           <?php endif; ?>
           <?php if ($addr !== ''): ?>
-          <li class="flex items-start gap-4 py-4">
+          <li class="flex flex-1 items-center gap-4 py-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0757B8]/10 text-[#0757B8]">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.4-6.5-10.3A6.5 6.5 0 0 1 12 4a6.5 6.5 0 0 1 6.5 6.7C18.5 15.6 12 21 12 21z"/><circle cx="12" cy="10.6" r="2.3"/></svg>
             </span>
@@ -212,7 +214,7 @@ $typeOptions = [
           </li>
           <?php endif; ?>
           <?php if ($hours !== ''): ?>
-          <li class="flex items-start gap-4 py-4">
+          <li class="flex flex-1 items-center gap-4 py-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#0757B8]/10 text-[#0757B8]">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             </span>
@@ -222,7 +224,7 @@ $typeOptions = [
           </li>
           <?php endif; ?>
           <?php if (!empty($whatsappLink)): ?>
-          <li class="flex items-start gap-4 py-4">
+          <li class="flex flex-1 items-center gap-4 py-4">
             <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#25D366]/15 text-[#1da851]">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
             </span>

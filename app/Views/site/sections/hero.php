@@ -85,7 +85,7 @@ $hasImg = $img !== '' && $align !== 'center';
   </svg>
   <div class="hero-premium-dots pointer-events-none absolute bottom-0 left-0 h-32 w-48" aria-hidden="true"></div>
 
-  <div class="container-x pt-10 pb-10 lg:flex lg:items-center lg:pt-14 lg:pb-14 <?= $small ? 'lg:min-h-[420px]' : 'lg:min-h-[560px]' ?>">
+  <div class="container-x pt-10 pb-8 lg:flex lg:items-center lg:pt-14 lg:pb-10 <?= $small ? 'lg:min-h-[420px]' : 'lg:min-h-[560px]' ?>">
     <!-- Content (left ~55%) -->
     <div class="relative z-10 animate-rise lg:w-[52%]">
       <?php if ($small): ?><span class="mb-4 block h-1 w-12 rounded bg-[#E31B23]" aria-hidden="true"></span><?php endif; ?>

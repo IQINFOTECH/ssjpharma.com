@@ -12,7 +12,7 @@ INSERT IGNORE INTO `pages` (`title`,`slug`,`status`,`template`,`is_home`,`meta_t
 
 -- Home sections
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"eyebrow":"Pharmaceutical Manufacturing","heading":"Quality medicine, manufactured to standard.","subheading":"SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners.","primary_label":"Become a distributor","primary_url":"/become-a-distributor","secondary_label":"Explore products","secondary_url":"/products","image_id":null,"align":"left"}'
+SELECT id, 'hero', 10, '{"style":"collage","eyebrow":"Pharmaceutical Manufacturing","heading":"Quality medicine, manufactured to standard.","subheading":"SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products for businesses and healthcare partners.","primary_label":"Become a distributor","primary_url":"/become-a-distributor","secondary_label":"Explore products","secondary_url":"/products","image_id":null,"align":"left"}'
 FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id AND s.type='hero');
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)

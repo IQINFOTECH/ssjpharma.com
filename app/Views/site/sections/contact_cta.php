@@ -1,22 +1,25 @@
 <?php
-/** Closing CTA — editorial hairline row (Concept 1). @var array $section */
+/** Closing CTA band. @var array $section */
 $d = $section;
 if (empty($d['heading']) && empty($d['button_label'])) { return; }
 ?>
 <section class="section-pad">
   <div class="container-x">
-    <div class="flex flex-col gap-5 rounded-2xl border border-slate-200 px-7 py-7 sm:flex-row sm:items-center sm:justify-between sm:px-9">
-      <div class="max-w-2xl">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 to-brand-600 px-8 py-14 text-center sm:px-14">
+      <div class="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-500/25 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-2xl">
         <?php if (!empty($d['heading'])): ?>
-        <h2 class="text-balance font-display text-xl font-semibold text-brand-900 sm:text-2xl"><?= e($d['heading']) ?></h2>
+        <h2 class="text-balance text-2xl font-semibold text-white sm:text-3xl lg:text-4xl"><?= e($d['heading']) ?></h2>
         <?php endif; ?>
         <?php if (!empty($d['text'])): ?>
-        <p class="mt-2 text-sm leading-relaxed text-slate-600"><?= e($d['text']) ?></p>
+        <p class="mx-auto mt-4 max-w-xl leading-relaxed text-brand-100"><?= e($d['text']) ?></p>
+        <?php endif; ?>
+        <?php if (!empty($d['button_label'])): ?>
+        <div class="mt-8 flex justify-center">
+          <a href="<?= e($d['button_url'] ?? '/contact-us') ?>" class="btn bg-white text-brand-900 shadow-[0_10px_24px_-12px_rgba(0,0,0,.5)] hover:-translate-y-px hover:bg-brand-50 focus-visible:ring-white"><?= e($d['button_label']) ?></a>
+        </div>
         <?php endif; ?>
       </div>
-      <?php if (!empty($d['button_label'])): ?>
-      <a href="<?= e($d['button_url'] ?? '/contact-us') ?>" class="btn btn-primary shrink-0"><?= e($d['button_label']) ?></a>
-      <?php endif; ?>
     </div>
   </div>
 </section>

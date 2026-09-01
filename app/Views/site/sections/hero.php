@@ -56,8 +56,10 @@ $hasImg = $img !== '' && $align !== 'center';
     </div>
   </div>
 </section>
-<?php else: // Standard hero — editorial: white ground, hairline base (Concept 1) ?>
-<section class="relative border-b border-slate-200 bg-white">
+<?php else: // Standard hero ?>
+<section class="relative overflow-hidden bg-gradient-to-b from-brand-50 via-brand-50/40 to-white">
+  <div class="pointer-events-none absolute -right-32 -top-24 h-[30rem] w-[30rem] rounded-full bg-teal-500/10 blur-3xl" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-500/10 blur-3xl" aria-hidden="true"></div>
   <div class="container-x relative <?= $small ? 'pt-10 pb-8 lg:pt-12 lg:pb-10' : 'pt-12 pb-8 lg:pt-16 lg:pb-10' ?>">
     <div class="grid items-center gap-12 <?= $hasImg ? 'lg:grid-cols-2' : '' ?>">
       <div class="<?= $align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-2xl' ?>">

@@ -23,7 +23,8 @@
     <circle cx="452" cy="436" r="15"/><circle cx="556" cy="436" r="15"/>
   </g>
   <!-- handshake (main) -->
-  <g fill="none" stroke="#e6f1fd" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" transform="translate(96 150) scale(8.2)">
+  <!-- stroke-width is scaled by the 8.2x transform: 1.1 * 8.2 ~ 9px effective -->
+  <g fill="none" stroke="#e6f1fd" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" transform="translate(96 150) scale(8.2)">
     <path d="m11 17 2 2a1 1 0 1 0 3-3"/>
     <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/>
     <path d="m21 3 1 11h-2"/>

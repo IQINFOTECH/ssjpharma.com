@@ -146,6 +146,12 @@ if (!function_exists('media_url')) {
         if ($val === '') {
             return '';
         }
+        // Bundled asset path — route through asset() so it gets the cache-busting
+        // ?v=mtime (static files are served with a one-year immutable cache, so a
+        // raw path would keep showing the OLD file after a deploy).
+        if (str_starts_with($val, '/assets/')) {
+            return asset(substr($val, strlen('/assets/')));
+        }
         // Pasted absolute path or URL — use verbatim (CSP still governs loading).
         if ($val[0] === '/' || str_starts_with($val, 'http://') || str_starts_with($val, 'https://')) {
             return $val;

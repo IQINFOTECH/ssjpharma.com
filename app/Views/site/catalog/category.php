@@ -13,17 +13,25 @@ $partials = dirname(__DIR__) . '/partials';
   </ol>
 </nav>
 
-<section class="container-x py-8 lg:py-12">
-  <span class="eyebrow mb-2">Category</span>
-  <h1 class="text-3xl font-semibold sm:text-4xl"><?= e($category['name']) ?></h1>
-  <?php if (!empty($category['description'])): ?><div class="prose-cms mt-4 max-w-3xl"><?= HtmlSanitizer::clean((string) $category['description']) ?></div><?php endif; ?>
+<!-- Premium banner (shared hero section partial) -->
+<?php $section = [
+    'style' => 'premium', 'size' => 'small',
+    'heading' => (string) $category['name'], 'heading_highlight' => '',
+    'subheading' => 'Browse ' . $category['name'] . ' products and send an enquiry directly.',
+    'image_id' => '/assets/hero-products.svg', 'image_alt' => 'Pharmaceutical products',
+    'align' => 'left',
+]; include dirname(__DIR__) . '/sections/hero.php'; $section = null; ?>
 
+<?php if (!empty($category['description']) || !empty($subcategories)): ?>
+<section class="container-x pt-8">
+  <?php if (!empty($category['description'])): ?><div class="prose-cms max-w-3xl"><?= HtmlSanitizer::clean((string) $category['description']) ?></div><?php endif; ?>
   <?php if (!empty($subcategories)): ?>
   <div class="mt-6 flex flex-wrap gap-2">
     <?php foreach ($subcategories as $sub): ?><a href="/product-category/<?= e($sub['slug']) ?>" class="rounded-full border border-slate-200 px-4 py-1.5 text-sm text-slate-600 hover:border-brand-300 hover:text-brand-600"><?= e($sub['name']) ?></a><?php endforeach; ?>
   </div>
   <?php endif; ?>
 </section>
+<?php endif; ?>
 
 <section class="container-x pb-12">
   <?php if (empty($products)): ?>

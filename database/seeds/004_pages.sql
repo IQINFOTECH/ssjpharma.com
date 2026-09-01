@@ -29,7 +29,7 @@ FROM `pages` WHERE `slug`='home' AND NOT EXISTS (SELECT 1 FROM `page_sections` s
 
 -- About / Quality: hero + richtext
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"About Us","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","image_id":"/assets/sample-lab.svg","align":"left"}'
+SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"About","heading_highlight":"Us","subheading":"SSJ Pharmaceuticals LLP is a pharmaceutical manufacturing company focused on delivering high-quality, safe and reliable healthcare products.","image_id":"/assets/hero-about.svg","image_alt":"Company and facility","align":"left"}'
 FROM `pages` WHERE `slug`='about-us' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
@@ -37,7 +37,7 @@ SELECT id, 'richtext', 20, '{"heading":"","body":"<p>Placeholder content. Edit t
 FROM `pages` WHERE `slug`='about-us' AND (SELECT COUNT(*) FROM `page_sections` s WHERE s.page_id = pages.id) < 2;
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"Quality","subheading":"Placeholder content. Edit in the CMS.","primary_label":"","primary_url":"","image_id":"/assets/sample-quality.svg","align":"left"}'
+SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"Our","heading_highlight":"Quality","subheading":"How we approach pharmaceutical quality for our business and healthcare partners.","image_id":"/assets/hero-quality.svg","image_alt":"Quality assurance","align":"left"}'
 FROM `pages` WHERE `slug`='quality' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
@@ -50,7 +50,7 @@ SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"Contact","h
 FROM `pages` WHERE `slug`='contact-us' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 INSERT IGNORE INTO `page_sections` (`page_id`,`type`,`sort_order`,`data`)
-SELECT id, 'hero', 10, '{"heading":"Become a Distributor","subheading":"Tell us about your business and we will be in touch.","primary_label":"","primary_url":"","image_id":"/assets/sample-warehouse.svg","align":"left"}'
+SELECT id, 'hero', 10, '{"style":"premium","size":"small","heading":"Become a","heading_highlight":"Distributor","subheading":"Tell us about your business and market, and our team will be in touch.","image_id":"/assets/hero-partner.svg","image_alt":"Partnership and distribution","align":"left"}'
 FROM `pages` WHERE `slug`='become-a-distributor' AND NOT EXISTS (SELECT 1 FROM `page_sections` s WHERE s.page_id = pages.id);
 
 -- Thank you

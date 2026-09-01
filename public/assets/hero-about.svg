@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Company and facility illustration">
+  <defs>
+    <linearGradient id="haBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#041d43"/><stop offset=".55" stop-color="#062B63"/><stop offset="1" stop-color="#0757B8"/>
+    </linearGradient>
+    <radialGradient id="haGlow" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#7cc0ff" stop-opacity=".5"/><stop offset="1" stop-color="#7cc0ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="haBlur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="640" height="560" fill="url(#haBg)"/>
+  <ellipse cx="440" cy="170" rx="240" ry="190" fill="url(#haGlow)"/>
+  <circle cx="120" cy="120" r="46" fill="#5aa9f2" opacity=".14" filter="url(#haBlur)"/>
+  <circle cx="560" cy="360" r="60" fill="#7cc0ff" opacity=".12" filter="url(#haBlur)"/>
+  <g stroke="#9ec6f5" stroke-width="1" opacity=".15" fill="none">
+    <path d="M470 120l50-28 50 28v56l-50 28-50-28z"/>
+    <circle cx="470" cy="120" r="4" fill="#9ec6f5"/><circle cx="570" cy="120" r="4" fill="#9ec6f5"/><circle cx="520" cy="92" r="4" fill="#9ec6f5"/>
+  </g>
+  <!-- ground -->
+  <path d="M40 462H600" stroke="#9ec6f5" stroke-opacity=".3" stroke-width="2"/>
+  <!-- main facility -->
+  <g fill="none" stroke="#e6f1fd" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 462V282h180v180"/>
+    <path d="M120 282l90-64 90 64"/>
+    <path d="M156 462v-78h44v78M220 462v-78h44v78"/>
+    <path d="M156 336h44M220 336h44"/>
+    <!-- side wing -->
+    <path d="M300 462V330h130v132M330 462v-56h34v56M386 388h24M330 360h80" stroke-width="5"/>
+    <!-- flag pole with red flag -->
+    <path d="M210 218v-44"/>
+  </g>
+  <path d="M210 174h44l-12 12 12 12h-44z" fill="#E31B23"/>
+  <!-- people nodes (team) -->
+  <g fill="none" stroke="#cfe4fb" stroke-width="5" stroke-linecap="round">
+    <circle cx="490" cy="404" r="14"/><path d="M466 462c2-24 12-34 24-34s22 10 24 34"/>
+    <circle cx="546" cy="396" r="12"/><path d="M526 452c2-20 10-30 20-30s18 10 20 30" opacity=".8"/>
+  </g>
+  <circle cx="214" cy="250" r="6" fill="#8fd0ff" opacity=".9"/>
+</svg>

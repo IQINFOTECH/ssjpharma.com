@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Quality assurance illustration">
+  <defs>
+    <linearGradient id="hqBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#041d43"/><stop offset=".55" stop-color="#062B63"/><stop offset="1" stop-color="#0757B8"/>
+    </linearGradient>
+    <radialGradient id="hqGlow" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#7cc0ff" stop-opacity=".5"/><stop offset="1" stop-color="#7cc0ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hqBlur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="hqBlurSm" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <rect width="640" height="560" fill="url(#hqBg)"/>
+  <ellipse cx="330" cy="180" rx="250" ry="200" fill="url(#hqGlow)"/>
+  <circle cx="130" cy="110" r="46" fill="#5aa9f2" opacity=".14" filter="url(#hqBlur)"/>
+  <circle cx="560" cy="340" r="60" fill="#7cc0ff" opacity=".12" filter="url(#hqBlur)"/>
+  <g stroke="#9ec6f5" stroke-width="1" opacity=".15" fill="none">
+    <path d="M70 420l46-26 46 26v52l-46 26-46-26z"/>
+    <circle cx="70" cy="420" r="4" fill="#9ec6f5"/><circle cx="162" cy="420" r="4" fill="#9ec6f5"/>
+  </g>
+  <!-- flask, softly blurred background -->
+  <g filter="url(#hqBlurSm)" opacity=".7" stroke="#cfe4fb" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M488 190v46l40 84a14 14 0 0 1-13 20H407a14 14 0 0 1-13-20l40-84v-46M424 190h74"/>
+  </g>
+  <!-- big shield with check -->
+  <g>
+    <path d="M280 96l124 44v104c0 92-62 146-124 172-62-26-124-80-124-172V140z" fill="rgba(255,255,255,.1)" stroke="#e6f1fd" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M280 128l96 34v82c0 72-48 114-96 136-48-22-96-64-96-136v-82z" fill="none" stroke="#cfe4fb" stroke-width="3" opacity=".6"/>
+    <path d="M222 262l42 42 78-84" fill="none" stroke="#e6f1fd" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- magnifier -->
+  <g fill="none" stroke="#e6f1fd" stroke-width="7" stroke-linecap="round">
+    <circle cx="474" cy="392" r="46" fill="rgba(255,255,255,.08)"/>
+    <path d="M508 426l44 44"/>
+    <path d="M454 392l14 14 26-28" stroke-width="6"/>
+  </g>
+  <circle cx="404" cy="120" r="10" fill="#E31B23"/>
+</svg>

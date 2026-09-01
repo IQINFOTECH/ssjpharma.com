@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Pharmaceutical products illustration">
+  <defs>
+    <linearGradient id="hprBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#041d43"/><stop offset=".55" stop-color="#062B63"/><stop offset="1" stop-color="#0757B8"/>
+    </linearGradient>
+    <radialGradient id="hprGlow" cx=".5" cy=".4" r=".7">
+      <stop offset="0" stop-color="#7cc0ff" stop-opacity=".5"/><stop offset="1" stop-color="#7cc0ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hprBlur" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="hprBlurSm" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <rect width="640" height="560" fill="url(#hprBg)"/>
+  <ellipse cx="360" cy="180" rx="250" ry="200" fill="url(#hprGlow)"/>
+  <circle cx="130" cy="110" r="46" fill="#5aa9f2" opacity=".14" filter="url(#hprBlur)"/>
+  <circle cx="560" cy="350" r="60" fill="#7cc0ff" opacity=".12" filter="url(#hprBlur)"/>
+  <g stroke="#9ec6f5" stroke-width="1" opacity=".15" fill="none">
+    <path d="M80 150l46-26 46 26v52l-46 26-46-26z"/>
+    <circle cx="80" cy="150" r="4" fill="#9ec6f5"/><circle cx="172" cy="150" r="4" fill="#9ec6f5"/>
+  </g>
+  <path d="M40 452H600" stroke="#9ec6f5" stroke-opacity=".3" stroke-width="2"/>
+  <!-- pill bottle, softly blurred background -->
+  <g filter="url(#hprBlurSm)" opacity=".75" stroke="#cfe4fb" stroke-width="6" fill="none" stroke-linejoin="round">
+    <rect x="112" y="252" width="96" height="200" rx="14"/>
+    <rect x="126" y="222" width="68" height="30" rx="6"/>
+    <path d="M112 320h96" stroke-width="5"/>
+  </g>
+  <!-- blister pack (main) -->
+  <g transform="rotate(-8 380 340)">
+    <rect x="262" y="252" width="240" height="168" rx="18" fill="rgba(255,255,255,.12)" stroke="#e6f1fd" stroke-width="6"/>
+    <g fill="rgba(207,228,251,.85)">
+      <circle cx="316" cy="300" r="20"/><circle cx="382" cy="300" r="20"/><circle cx="448" cy="300" r="20"/>
+      <circle cx="316" cy="368" r="20"/><circle cx="382" cy="368" r="20"/><circle cx="448" cy="368" r="20"/>
+    </g>
+    <g fill="none" stroke="#8fb6e4" stroke-width="2.5">
+      <circle cx="316" cy="300" r="20"/><circle cx="382" cy="300" r="20"/><circle cx="448" cy="300" r="20"/>
+      <circle cx="316" cy="368" r="20"/><circle cx="382" cy="368" r="20"/><circle cx="448" cy="368" r="20"/>
+    </g>
+  </g>
+  <!-- capsules -->
+  <g transform="rotate(-24 210 480)">
+    <rect x="150" y="462" width="120" height="42" rx="21" fill="#f4f8fe"/>
+    <rect x="150" y="462" width="60" height="42" rx="21" fill="#E31B23"/>
+    <rect x="150" y="462" width="120" height="42" rx="21" fill="none" stroke="rgba(4,29,67,.35)" stroke-width="3"/>
+  </g>
+  <circle cx="520" cy="470" r="19" fill="#f4f8fe"/>
+  <path d="M520 458v24M508 470h24" stroke="#8fb6e4" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- tablet with score line -->
+  <circle cx="568" cy="440" r="14" fill="#cfe4fb"/><path d="M558 440h20" stroke="#8fb6e4" stroke-width="3" stroke-linecap="round"/>
+</svg>

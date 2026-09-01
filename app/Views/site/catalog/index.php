@@ -22,15 +22,14 @@ if ($taId)      { $chips[] = ['label' => $nm($areas, $taId),        'url' => $wi
 if ($dfId)      { $chips[] = ['label' => $nm($dosages, $dfId),      'url' => $without($qs, 'dosage')]; }
 ?>
 <?php $this->start('content'); ?>
-<!-- Hero -->
-<section class="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-brand-50 to-white">
-  <div class="pointer-events-none absolute -right-24 -top-20 h-80 w-80 rounded-full bg-teal-500/10 blur-3xl" aria-hidden="true"></div>
-  <div class="container-x relative py-12 lg:py-16">
-    <span class="eyebrow mb-3">Catalogue</span>
-    <h1 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Products</h1>
-    <p class="mt-4 max-w-2xl text-lg text-slate-600">Browse our product range. Filter by category, therapeutic area or dosage form, and send an enquiry directly.</p>
-  </div>
-</section>
+<!-- Premium banner (shared hero section partial) -->
+<?php $section = [
+    'style' => 'premium', 'size' => 'small',
+    'heading' => 'Our', 'heading_highlight' => 'Products',
+    'subheading' => 'Browse our product range. Filter by category, therapeutic area or dosage form, and send an enquiry directly.',
+    'image_id' => '/assets/hero-products.svg', 'image_alt' => 'Pharmaceutical products',
+    'align' => 'left',
+]; include dirname(__DIR__) . '/sections/hero.php'; $section = null; ?>
 
 <section class="container-x py-10">
   <div class="grid gap-8 lg:grid-cols-[230px_1fr]">

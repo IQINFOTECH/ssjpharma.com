@@ -13,11 +13,20 @@ $partials = dirname(__DIR__) . '/partials';
   </ol>
 </nav>
 
-<section class="container-x py-8 lg:py-12">
-  <span class="eyebrow mb-2">Therapeutic Area</span>
-  <h1 class="text-3xl font-semibold sm:text-4xl"><?= e($area['name']) ?></h1>
-  <?php if (!empty($area['description'])): ?><div class="prose-cms mt-4 max-w-3xl"><?= HtmlSanitizer::clean((string) $area['description']) ?></div><?php endif; ?>
+<!-- Premium banner (shared hero section partial) -->
+<?php $section = [
+    'style' => 'premium', 'size' => 'small',
+    'heading' => (string) $area['name'], 'heading_highlight' => '',
+    'subheading' => 'Products in the ' . $area['name'] . ' range — send an enquiry directly.',
+    'image_id' => '/assets/hero-products.svg', 'image_alt' => 'Pharmaceutical products',
+    'align' => 'left',
+]; include dirname(__DIR__) . '/sections/hero.php'; $section = null; ?>
+
+<?php if (!empty($area['description'])): ?>
+<section class="container-x pt-8">
+  <div class="prose-cms max-w-3xl"><?= HtmlSanitizer::clean((string) $area['description']) ?></div>
 </section>
+<?php endif; ?>
 
 <section class="container-x pb-12">
   <?php if (empty($products)): ?>

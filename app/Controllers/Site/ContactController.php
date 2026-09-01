@@ -29,7 +29,17 @@ final class ContactController extends SiteController
 
         $formKey = (string) $request->input('form_key', 'contact-us');
         $formKey = preg_match('/^[a-z0-9\-]{1,60}$/', $formKey) ? $formKey : 'contact-us';
-        $backUrl = '/' . $formKey;
+
+        // The page the form was rendered on (hidden origin_slug). form_key may differ
+        // when the contact page's "Enquiry type" select picks another type, so errors
+        // must PRG back to the ORIGIN page. Internal single-segment slug only —
+        // regex-validated, so no open-redirect surface.
+        $origin = (string) $request->input('origin_slug', $formKey);
+        $origin = preg_match('/^[a-z0-9\-]{1,60}$/', $origin) ? $origin : $formKey;
+        if ($origin === 'product-enquiry') {
+            $origin = 'contact-us'; // canonical key, not a page
+        }
+        $backUrl = '/' . $origin;
 
         // Enquiry type + source are derived SERVER-SIDE from form_key (never from
         // a client-supplied "source" field). Product enquiry: the hidden product_id
@@ -46,8 +56,9 @@ final class ContactController extends SiteController
                 $backUrl = '/contact-us?product=' . $productId;
             }
         }
-        // Marker used by the page/catalog renderers to re-show flashed errors.
-        $flashKey = $productId !== null ? ('product-' . $productId) : $formKey;
+        // Marker used by the page renderer to re-show flashed errors (keyed to the
+        // ORIGIN page; product enquiries key to the product).
+        $flashKey = $productId !== null ? ('product-' . $productId) : $origin;
 
         $input = [
             'name'              => (string) $request->input('name', ''),

@@ -150,11 +150,29 @@ final class PageController extends SiteController
             $session->forget('contact_form_key');
         }
 
+        $pageSlug = (string) $page['slug'];
+
+        // Contact page extras: a product-of-interest list and links to legal pages
+        // (only when those pages actually exist — never a link to a 404).
+        $products = [];
+        if ($pageSlug === 'contact-us' && $productCtx === null) {
+            $products = $this->container->get(\App\Repositories\ProductRepository::class)->allPublishedMinimal();
+        }
+        $legal = [];
+        foreach (['privacy-policy' => 'Privacy Policy', 'terms-and-conditions' => 'Terms & Conditions'] as $slug => $label) {
+            if ($this->pages()->findPublishedBySlug($slug) !== null) {
+                $legal['/' . $slug] = $label;
+            }
+        }
+
         return [
             // enquiry type + source are derived server-side from form_key (EnquiryType);
             // the client no longer sends a "source" field.
             'form_key'         => $formKey,
+            'page_slug'        => $pageSlug,
             'product'          => $productCtx,
+            'products'         => $products,
+            'legal'            => $legal,
             'errors'           => $errors,
             'old'              => $old,
             'captcha_enabled'  => $captcha->isEnabled(),

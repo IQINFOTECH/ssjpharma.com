@@ -53,6 +53,16 @@ final class ProductRepository extends Repository
         );
     }
 
+    /** Lightweight published list for enquiry-form "product of interest" selects. */
+    public function allPublishedMinimal(): array
+    {
+        return $this->db->select(
+            "SELECT `id`, `name` FROM `products`
+             WHERE `status`='published' AND `deleted_at` IS NULL" . $this->demoCond() . "
+             ORDER BY `name` ASC LIMIT 500"
+        );
+    }
+
     /**
      * Any non-deleted product by slug, regardless of status or demo flag — for
      * AUTHENTICATED ADMIN PREVIEW ONLY. Never call this on a public code path

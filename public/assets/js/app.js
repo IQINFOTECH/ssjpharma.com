@@ -92,6 +92,15 @@
     });
   });
 
+  // --- Character counter for textareas: .js-count + data-count-out target ----
+  document.querySelectorAll('.js-count').forEach(function (t) {
+    var out = document.getElementById(t.getAttribute('data-count-out'));
+    if (!out) return;
+    function upd() { out.textContent = t.value.length + ' / ' + (t.getAttribute('maxlength') || ''); }
+    t.addEventListener('input', upd);
+    upd();
+  });
+
   // --- WhatsApp CTA click tracking (best-effort; a click is not a lead) ------
   var meta = document.querySelector('meta[name="csrf-token"]');
   var token = meta ? meta.getAttribute('content') : '';

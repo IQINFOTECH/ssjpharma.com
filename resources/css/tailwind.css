@@ -35,6 +35,16 @@
   .hero-premium-curve { border-radius: 32% 0 0 32% / 52% 0 0 52%; }
   /* Red-into-blue arc band that traces the curve (sits behind the photo). */
   .hero-premium-band { background: linear-gradient(180deg, #E31B23 0 52%, #0757B8 52% 78%, #062B63 78% 100%); }
+  /* Stylised map panel for the contact Locations card (no third-party embed —
+     CSP has no frame-src; the overlay card links out to Google Maps). */
+  .contact-map-bg {
+    background-color: #eaf2fb;
+    background-image:
+      linear-gradient(rgba(7, 87, 184, .08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(7, 87, 184, .08) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
   /* Fine dotted detail, bottom-left of the hero. */
   .hero-premium-dots {
     background-image: radial-gradient(rgba(6, 43, 99, .22) 1.5px, transparent 1.6px);

@@ -85,17 +85,24 @@ $hasImg = $img !== '' && $align !== 'center';
   </svg>
   <div class="hero-premium-dots pointer-events-none absolute bottom-0 left-0 h-32 w-48" aria-hidden="true"></div>
 
-  <div class="container-x pt-10 pb-10 lg:flex lg:min-h-[560px] lg:items-center lg:pt-14 lg:pb-14">
+  <div class="container-x pt-10 pb-10 lg:flex lg:items-center lg:pt-14 lg:pb-14 <?= $small ? 'lg:min-h-[420px]' : 'lg:min-h-[560px]' ?>">
     <!-- Content (left ~55%) -->
     <div class="relative z-10 animate-rise lg:w-[52%]">
+      <?php if ($small): ?><span class="mb-4 block h-1 w-12 rounded bg-[#E31B23]" aria-hidden="true"></span><?php endif; ?>
       <?php if (!empty($d['eyebrow'])): ?>
       <p class="mb-4 text-sm font-extrabold uppercase tracking-[0.06em] text-[#E31B23]"><?= e($d['eyebrow']) ?></p>
       <?php endif; ?>
+      <?php if ($small): ?>
+      <h1 class="font-sans text-4xl font-extrabold leading-[1.08] tracking-tight text-[#0b1f45] sm:text-5xl">
+        <?= e($d['heading'] ?? '') ?><?php if ($hl !== ''): ?> <span class="text-[#0757B8]"><?= e($hl) ?></span><?php endif; ?>
+      </h1>
+      <?php else: ?>
       <h1 class="font-sans text-4xl font-extrabold uppercase leading-[1.06] tracking-tight text-[#0b1f45] sm:text-5xl xl:text-[3.5rem]">
         <?= e($d['heading'] ?? '') ?>
         <?php if ($hl !== ''): ?><span class="block text-[#0757B8]"><?= e($hl) ?></span><?php endif; ?>
       </h1>
       <span class="mt-5 block h-1 w-16 rounded bg-[#E31B23]" aria-hidden="true"></span>
+      <?php endif; ?>
       <?php if (!empty($d['subheading'])): ?>
       <p class="mt-5 max-w-xl text-lg leading-relaxed text-slate-600"><?= nl2br(e($d['subheading'])) ?></p>
       <?php endif; ?>
@@ -104,9 +111,13 @@ $hasImg = $img !== '' && $align !== 'center';
       <ul class="mt-8 grid grid-cols-2 gap-y-7 sm:grid-cols-4 sm:divide-x sm:divide-slate-200">
         <?php foreach ($features as $i => $label): ?>
         <li class="flex flex-col items-center gap-3 px-3 text-center">
+          <?php if ($small): ?>
+          <svg class="h-7 w-7 text-[#0757B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?= $icons[$i % count($icons)] ?></svg>
+          <?php else: ?>
           <span class="flex h-12 w-12 items-center justify-center rounded-full bg-[#0757B8]/10">
             <svg class="h-6 w-6 text-[#0757B8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?= $icons[$i % count($icons)] ?></svg>
           </span>
+          <?php endif; ?>
           <span class="text-[11px] font-bold uppercase leading-snug tracking-wide text-[#0b1f45]"><?= e($label) ?></span>
         </li>
         <?php endforeach; ?>
@@ -130,9 +141,9 @@ $hasImg = $img !== '' && $align !== 'center';
     </div>
 
     <!-- Visual (right ~45%): full-bleed photo panel with curved red/blue arc band. -->
-    <div class="relative mt-10 animate-rise-2 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:w-[46%]">
+    <div class="relative mt-10 animate-rise-2 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 <?= $small ? 'lg:w-[40%]' : 'lg:w-[46%]' ?>">
       <div class="hero-premium-band hero-premium-curve absolute inset-y-0 -left-4 right-0 lg:-left-5" aria-hidden="true"></div>
-      <div class="hero-premium-curve relative h-72 overflow-hidden border-[6px] border-white sm:h-96 lg:h-full">
+      <div class="hero-premium-curve relative overflow-hidden border-[6px] border-white lg:h-full <?= $small ? 'h-56 sm:h-72' : 'h-72 sm:h-96' ?>">
         <img src="<?= e($img !== '' ? $img : asset('hero-lab.svg')) ?>" alt="<?= e($imgAlt !== '' ? $imgAlt : 'Pharmaceutical laboratory') ?>" width="640" height="560" fetchpriority="high" class="h-full w-full object-cover">
         <?php if ($badgeParts !== []): ?>
         <div class="absolute bottom-5 right-5 animate-float">
